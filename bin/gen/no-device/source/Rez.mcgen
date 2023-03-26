@@ -1,0 +1,76 @@
+import Toybox.Lang;
+using Toybox.WatchUi;
+using Toybox.WatchUi as Ui;
+using Toybox.Graphics;
+using Toybox.Graphics as Gfx;
+
+module Rez {
+    module Drawables {
+        (:initialized) var id_send as Symbol;
+        (:initialized) var LauncherIcon as Symbol;
+    } // Drawables
+
+    module Fonts {
+    } // Fonts
+
+    module JsonData {
+    } // JsonData
+
+    module Layouts {
+        function MainLayout(dc as Graphics.Dc) as Array<WatchUi.Drawable> {
+            var rez_cmp_local_var_dc_getWidth = dc.getWidth();
+
+            var rez_cmp_local_text_4032604840 = new WatchUi.Text({:color=>Graphics.COLOR_BLUE, :locX=>(rez_cmp_local_var_dc_getWidth * 0.5), :locY=>40, :text=>$.Rez.Strings.AppName, :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_MEDIUM});
+
+            var rez_cmp_local_text_2088308893 = new WatchUi.Text({:color=>Graphics.COLOR_WHITE, :locX=>(rez_cmp_local_var_dc_getWidth * 0.5), :locY=>((dc.getHeight() - dc.getFontHeight(Graphics.FONT_SMALL)) * 0.5), :text=>$.Rez.Strings.Prompt, :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_SMALL});
+
+            return [rez_cmp_local_text_4032604840, rez_cmp_local_text_2088308893] as Array<WatchUi.Drawable>;
+        }
+
+        function SendLayout(dc as Graphics.Dc) as Array<WatchUi.Drawable> {
+            var rez_cmp_local_var_dc_getWidth = dc.getWidth();
+
+            var rez_cmp_local_text_1165030703 = new WatchUi.Text({:color=>Graphics.COLOR_BLUE, :locX=>(rez_cmp_local_var_dc_getWidth * 0.5), :locY=>40, :text=>$.Rez.Strings.AppName, :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_MEDIUM});
+
+            var rez_cmp_local_text_1432345679 = new WatchUi.Text({:color=>Graphics.COLOR_WHITE, :locX=>(rez_cmp_local_var_dc_getWidth * 0.5), :locY=>((dc.getHeight() - dc.getFontHeight(Graphics.FONT_SMALL)) * 0.5), :text=>"send!", :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_SMALL});
+
+            var rez_cmp_local_bitmap_id_send = new WatchUi.Bitmap({:identifier=>"id_send", :rezId=>$.Rez.Drawables.id_send, :locX=>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>190});
+            rez_cmp_local_bitmap_id_send.setLocation(((rez_cmp_local_var_dc_getWidth - rez_cmp_local_bitmap_id_send.width) * 0.5), rez_cmp_local_bitmap_id_send.locY);
+
+            return [rez_cmp_local_text_1165030703, rez_cmp_local_text_1432345679, rez_cmp_local_bitmap_id_send] as Array<WatchUi.Drawable>;
+        }
+    } // Layouts
+
+    module Menus {
+        class MainMenu extends WatchUi.Menu {
+            function initialize() {
+                Menu.initialize();
+                Menu.setTitle((WatchUi.loadResource($.Rez.Strings.MainMenuTitle) as String));
+                addItem((WatchUi.loadResource($.Rez.Strings.MenuLabel1) as String), :Item1);
+                addItem((WatchUi.loadResource($.Rez.Strings.MenuLabel2) as String), :Item2);
+                addItem((WatchUi.loadResource($.Rez.Strings.MenuLabel3) as String), :Item3);
+            }
+        }
+    } // Menus
+
+    module Strings {
+        (:initialized) var webhookUrl3 as Symbol;
+        (:initialized) var webhookUrl2 as Symbol;
+        (:initialized) var avatarUrl as Symbol;
+        (:initialized) var webhookUrl1 as Symbol;
+        (:initialized) var MainMenuTitle as Symbol;
+        (:initialized) var HomeTitle as Symbol;
+        (:initialized) var label as Symbol;
+        (:initialized) var label1 as Symbol;
+        (:initialized) var webhookUrl as Symbol;
+        (:initialized) var content as Symbol;
+        (:initialized) var label2 as Symbol;
+        (:initialized) var AppName as Symbol;
+        (:initialized) var label3 as Symbol;
+        (:initialized) var MenuLabel3 as Symbol;
+        (:initialized) var Prompt as Symbol;
+        (:initialized) var MenuLabel1 as Symbol;
+        (:initialized) var MenuLabel2 as Symbol;
+        (:initialized) var username as Symbol;
+    } // Strings
+} // Rez

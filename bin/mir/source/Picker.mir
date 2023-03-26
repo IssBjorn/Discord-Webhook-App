@@ -1,0 +1,1458 @@
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 1; ]
+using Toybox.WatchUi as :Ui;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 2; ]
+using Toybox.Graphics as :Gfx;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 3; ]
+using Toybox.System as :System;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 4; ]
+using Toybox.Application as :App;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 5; @position = 4; ]
+var inputStr = "";
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 6; @position = 4; ]
+var newStr = "";
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 9; ]
+class TextPickerView extends Ui.View{
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 9; ]
+    <init> {
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 24 8 ]
+        %tmp.1 = newa 2;
+        %tmp.2 = 10;
+        %tmp.3 = dup %tmp.1;
+        %tmp.4 = aputv %tmp.3 0 %tmp.2;
+        %tmp.6 = getv ? :DEVICE_HEIGHT;
+        %tmp.7 = 2;
+        %tmp.8 = div %tmp.6 %tmp.7;
+        %tmp.9 = dup %tmp.4;
+        %tmp.10 = aputv %tmp.9 1 %tmp.8;
+        putv self :PICKER_INPUT_POS %tmp.10;
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 9; ]
+    static
+    <init> {
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 12 17 ]
+        %tmp.11 = getm $.Toybox.System;
+        %tmp.12 = getv function %tmp.11 :getDeviceSettings;
+        %tmp.13 = invoke %tmp.11 %tmp.12();
+        %tmp.14 = getv %tmp.13 :screenHeight;
+        putv self :DEVICE_WIDTH %tmp.14;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 13 17 ]
+        %tmp.15 = getm $.Toybox.System;
+        %tmp.16 = getv function %tmp.15 :getDeviceSettings;
+        %tmp.17 = invoke %tmp.15 %tmp.16();
+        %tmp.18 = getv %tmp.17 :screenWidth;
+        putv self :DEVICE_HEIGHT %tmp.18;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 22 17 ]
+        %tmp.19 = newa 2;
+        %tmp.20 = 95;
+        %tmp.21 = dup %tmp.19;
+        %tmp.22 = aputv %tmp.21 0 %tmp.20;
+        %tmp.23 = 30;
+        %tmp.24 = dup %tmp.22;
+        %tmp.25 = aputv %tmp.24 1 %tmp.23;
+        putv self :PICKER_TITLE_POS %tmp.25;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 23 17 ]
+        %tmp.26 = newa 2;
+        %tmp.27 = 10;
+        %tmp.28 = dup %tmp.26;
+        %tmp.29 = aputv %tmp.28 0 %tmp.27;
+        %tmp.30 = 80;
+        %tmp.31 = dup %tmp.29;
+        %tmp.32 = aputv %tmp.31 1 %tmp.30;
+        putv self :PICKER_SUBTITLE_POS %tmp.32;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 29 17 ]
+        %tmp.33 = getm $.Toybox.Graphics;
+        %tmp.34 = getv %tmp.33 :FONT_SMALL;
+        putv self :FONT_PICKER_TITLE %tmp.34;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 30 17 ]
+        %tmp.35 = getm $.Toybox.Graphics;
+        %tmp.36 = getv %tmp.35 :FONT_TINY;
+        putv self :FONT_PICKER_SUBTITLE %tmp.36;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 31 17 ]
+        %tmp.37 = getm $.Toybox.Graphics;
+        %tmp.38 = getv %tmp.37 :FONT_XTINY;
+        putv self :FONT_PICKER_VALUE %tmp.38;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 32 17 ]
+        %tmp.39 = getm $.Toybox.Graphics;
+        %tmp.40 = getv %tmp.39 :FONT_XTINY;
+        putv self :FONT_PICKER_LETTER_NOT_SELECTED %tmp.40;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 33 17 ]
+        %tmp.41 = getm $.Toybox.Graphics;
+        %tmp.42 = getv %tmp.41 :FONT_TINY;
+        putv self :FONT_PICKER_LETTER_SELECTED %tmp.42;
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 12; @position = 17; ]
+    static
+    const DEVICE_WIDTH;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 13; @position = 17; ]
+    static
+    const DEVICE_HEIGHT;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 15; @position = 17; ]
+    static
+    const INPUT_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_ !@,.#()£$? \n";
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 16; @position = 17; ]
+    static
+    const INPUT_CONTROLS = "<*";
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 17; @position = 17; ]
+    static
+    const INPUT_OK = "OK";
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 18; @position = 17; ]
+    static
+    const INPUT_BACK = "<<";
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 19; @position = 17; ]
+    static
+    const INPUT_ENTER = "+";
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 20; @position = 17; ]
+    static
+    const INPUT_SPACE = "<>";
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 22; @position = 17; ]
+    static
+    const PICKER_TITLE_POS;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 23; @position = 17; ]
+    static
+    const PICKER_SUBTITLE_POS;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 24; @position = 8; ]
+    var PICKER_INPUT_POS;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 25; @position = 17; ]
+    static
+    const PICKER_X = 174;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 26; @position = 17; ]
+    static
+    const PICKER_WIDTH = 32;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 29; @position = 17; ]
+    static
+    const FONT_PICKER_TITLE;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 30; @position = 17; ]
+    static
+    const FONT_PICKER_SUBTITLE;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 31; @position = 17; ]
+    static
+    const FONT_PICKER_VALUE;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 32; @position = 17; ]
+    static
+    const FONT_PICKER_LETTER_NOT_SELECTED;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 33; @position = 17; ]
+    static
+    const FONT_PICKER_LETTER_SELECTED;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 35; @position = 8; ]
+    var mTitle;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 36; @position = 8; ]
+    var mSubTitle;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 37; @position = 8; ]
+    var mMinChars;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 38; @position = 8; ]
+    var mMaxChars;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 39; @position = 8; ]
+    var input_chars;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 40; @position = 8; ]
+    var charIdx = 0;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 42; ]
+    function initialize(title, subTitle, minChars, maxChars, prefix) as Void {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_42_69_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 43 8 ]
+        %tmp.2 = lgetv %title;
+        putv self :mTitle %tmp.2;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 44 8 ]
+        %tmp.4 = lgetv %subTitle;
+        putv self :mSubTitle %tmp.4;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 45 8 ]
+        %tmp.6 = lgetv %minChars;
+        putv self :mMinChars %tmp.6;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 46 8 ]
+        %tmp.8 = lgetv %maxChars;
+        putv self :mMaxChars %tmp.8;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 47 8 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_47_8_if_stmt:
+        %tmp.10 = lgetv %prefix;
+        %tmp.11 = null;
+        %tmp.12 = ne %tmp.10 %tmp.11;
+        bf %tmp.12 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_47_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_47_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_47_28_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 48 12 ]
+        %tmp.14 = lgetv %prefix;
+        %tmp.15 = as %tmp.14 { (!Null) };
+        putv self :inputStr %tmp.15;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_47_28_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_47_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_47_8_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 50 8 ]
+        %tmp.17 = getv ? :INPUT_LETTERS;
+        %tmp.19 = getv ? :INPUT_CONTROLS;
+        %tmp.20 = add %tmp.17 %tmp.19;
+        putv self :input_chars %tmp.20;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 51 8 ]
+        %tmp.22 = getv ? :View;
+        %tmp.23 = getv function %tmp.22 :initialize;
+        invoke %tmp.22 %tmp.23();
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_42_69_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 54; ]
+    function onUpdate(dc) {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 56 8 ]
+        %tmp.1 = lgetv %dc;
+        %tmp.2 = getv function %tmp.1 :setColor;
+        %tmp.3 = getm $.Toybox.Graphics;
+        %tmp.4 = getv %tmp.3 :COLOR_TRANSPARENT;
+        %tmp.5 = getm $.Toybox.Graphics;
+        %tmp.6 = getv %tmp.5 :COLOR_BLACK;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 57 8 ]
+        %tmp.7 = lgetv %dc;
+        %tmp.8 = getv function %tmp.7 :clear;
+        invoke %tmp.7 %tmp.8();
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 59 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_stop" ]
+        %rightBarX.1 = local;
+        %tmp.10 = getv ? :PICKER_X;
+        %tmp.12 = getv ? :PICKER_WIDTH;
+        %tmp.13 = add %tmp.10 %tmp.12;
+        lputv %rightBarX.1 %tmp.13;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 61 8 ]
+        %tmp.14 = lgetv %dc;
+        %tmp.15 = getv function %tmp.14 :setColor;
+        %tmp.16 = getm $.Toybox.Graphics;
+        %tmp.17 = getv %tmp.16 :COLOR_WHITE;
+        %tmp.18 = getm $.Toybox.Graphics;
+        %tmp.19 = getv %tmp.18 :COLOR_TRANSPARENT;
+        invoke %tmp.14 %tmp.15(%tmp.17, %tmp.19);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 62 8 ]
+        %tmp.20 = lgetv %dc;
+        %tmp.21 = getv function %tmp.20 :drawText;
+        %tmp.23 = getv ? :PICKER_TITLE_POS;
+        %tmp.24 = 0;
+        %tmp.25 = agetv %tmp.23 %tmp.24;
+        %tmp.27 = getv ? :PICKER_TITLE_POS;
+        %tmp.28 = 1;
+        %tmp.29 = agetv %tmp.27 %tmp.28;
+        %tmp.31 = getv ? :FONT_PICKER_TITLE;
+        %tmp.33 = getv ? :mTitle;
+        %tmp.34 = getm $.Toybox.Graphics;
+        %tmp.35 = getv %tmp.34 :TEXT_JUSTIFY_CENTER;
+        %tmp.36 = getm $.Toybox.Graphics;
+        %tmp.37 = getv %tmp.36 :TEXT_JUSTIFY_VCENTER;
+        %tmp.38 = bitor %tmp.35 %tmp.37;
+        invoke %tmp.20 %tmp.21(%tmp.25, %tmp.29, %tmp.31, %tmp.33, %tmp.38);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 63 8 ]
+        %tmp.39 = lgetv %dc;
+        %tmp.40 = getv function %tmp.39 :drawText;
+        %tmp.42 = getv ? :PICKER_SUBTITLE_POS;
+        %tmp.43 = 0;
+        %tmp.44 = agetv %tmp.42 %tmp.43;
+        %tmp.46 = getv ? :PICKER_SUBTITLE_POS;
+        %tmp.47 = 1;
+        %tmp.48 = agetv %tmp.46 %tmp.47;
+        %tmp.50 = getv ? :FONT_PICKER_SUBTITLE;
+        %tmp.52 = getv ? :mSubTitle;
+        %tmp.53 = getm $.Toybox.Graphics;
+        %tmp.54 = getv %tmp.53 :TEXT_JUSTIFY_LEFT;
+        %tmp.55 = getm $.Toybox.Graphics;
+        %tmp.56 = getv %tmp.55 :TEXT_JUSTIFY_VCENTER;
+        %tmp.57 = bitor %tmp.54 %tmp.56;
+        invoke %tmp.39 %tmp.40(%tmp.44, %tmp.48, %tmp.50, %tmp.52, %tmp.57);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 64 8 ]
+        %tmp.58 = lgetv %dc;
+        %tmp.59 = getv function %tmp.58 :setPenWidth;
+        %tmp.60 = 2;
+        invoke %tmp.58 %tmp.59(%tmp.60);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 65 8 ]
+        %tmp.61 = lgetv %dc;
+        %tmp.62 = getv function %tmp.61 :drawLine;
+        %tmp.64 = getv ? :PICKER_X;
+        %tmp.65 = 0;
+        %tmp.67 = getv ? :PICKER_X;
+        %tmp.69 = getv ? :DEVICE_HEIGHT;
+        invoke %tmp.61 %tmp.62(%tmp.64, %tmp.65, %tmp.67, %tmp.69);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 66 8 ]
+        %tmp.70 = lgetv %dc;
+        %tmp.71 = getv function %tmp.70 :drawLine;
+        %tmp.73 = lgetv %rightBarX.1;
+        %tmp.74 = 0;
+        %tmp.76 = lgetv %rightBarX.1;
+        %tmp.78 = getv ? :DEVICE_HEIGHT;
+        invoke %tmp.70 %tmp.71(%tmp.73, %tmp.74, %tmp.76, %tmp.78);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 68 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_stop" ]
+        %pickerFontHeight.2 = local;
+        %tmp.79 = lgetv %dc;
+        %tmp.80 = getv function %tmp.79 :getTextDimensions;
+        %tmp.82 = getv ? :input_chars;
+        %tmp.83 = getv function %tmp.82 :substring;
+        %tmp.84 = 0;
+        %tmp.85 = 1;
+        %tmp.86 = invoke %tmp.82 %tmp.83(%tmp.84, %tmp.85);
+        %tmp.88 = getv ? :FONT_PICKER_LETTER_SELECTED;
+        %tmp.89 = invoke %tmp.79 %tmp.80(%tmp.86, %tmp.88);
+        %tmp.90 = 1;
+        %tmp.91 = agetv %tmp.89 %tmp.90;
+        lputv %pickerFontHeight.2 %tmp.91;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 70 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_stop" ]
+        %sidx.3 = local;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 71 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_stop" ]
+        %eidx.4 = local;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 72 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_stop" ]
+        %ch.5 = local;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 75 8 ]
+        for @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_test @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_incr @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_init:
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_begin" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_end" ]
+        %i.6 = local;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_20_begin:
+        %tmp.93 = getv ? :input_chars;
+        %tmp.94 = getv function %tmp.93 :length;
+        %tmp.95 = invoke %tmp.93 %tmp.94();
+        %tmp.96 = 5;
+        %tmp.97 = gt %tmp.95 %tmp.96;
+        bf %tmp.97 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_20_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_20_true:
+        %tmp.98 = 2;
+        %tmp.99 = sub 0 %tmp.98;
+        push %tmp.99;
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_20_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_20_false:
+        %tmp.101 = getv ? :input_chars;
+        %tmp.102 = getv function %tmp.101 :length;
+        %tmp.103 = invoke %tmp.101 %tmp.102();
+        %tmp.104 = 2;
+        %tmp.105 = div %tmp.103 %tmp.104;
+        %tmp.106 = 1;
+        %tmp.107 = sub %tmp.105 %tmp.106;
+        push %tmp.107;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_20_end:
+        %tmp.108 = phi [%tmp.97 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_20_begin] [%tmp.99 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_20_true] [%tmp.107 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_20_false] [%tmp.108 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_20_end];
+        lputv %i.6 %tmp.108;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_test:
+        %tmp.110 = lgetv %i.6;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_85_begin:
+        %tmp.112 = getv ? :input_chars;
+        %tmp.113 = getv function %tmp.112 :length;
+        %tmp.114 = invoke %tmp.112 %tmp.113();
+        %tmp.115 = 5;
+        %tmp.116 = gt %tmp.114 %tmp.115;
+        bf %tmp.116 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_85_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_85_true:
+        %tmp.117 = 2;
+        push %tmp.117;
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_85_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_85_false:
+        %tmp.119 = getv ? :input_chars;
+        %tmp.120 = getv function %tmp.119 :length;
+        %tmp.121 = invoke %tmp.119 %tmp.120();
+        %tmp.122 = 2;
+        %tmp.123 = div %tmp.121 %tmp.122;
+        push %tmp.123;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_85_end:
+        %tmp.124 = phi [%tmp.116 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_85_begin] [%tmp.117 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_85_true] [%tmp.123 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_85_false] [%tmp.124 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_85_end];
+        %tmp.125 = lte %tmp.110 %tmp.124;
+        bf %tmp.125 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_begin:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_146_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 76 12 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_76_12_if_stmt:
+        %tmp.127 = lgetv %i.6;
+        %tmp.128 = 0;
+        %tmp.129 = eq %tmp.127 %tmp.128;
+        bf %tmp.129 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_76_12_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_76_12_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_76_24_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 77 16 ]
+        %tmp.130 = lgetv %dc;
+        %tmp.131 = getv function %tmp.130 :setColor;
+        %tmp.132 = getm $.Toybox.Graphics;
+        %tmp.133 = getv %tmp.132 :COLOR_DK_GRAY;
+        %tmp.134 = getm $.Toybox.Graphics;
+        %tmp.135 = getv %tmp.134 :COLOR_TRANSPARENT;
+        invoke %tmp.130 %tmp.131(%tmp.133, %tmp.135);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 78 16 ]
+        %tmp.136 = lgetv %dc;
+        %tmp.137 = getv function %tmp.136 :setPenWidth;
+        %tmp.138 = 2;
+        invoke %tmp.136 %tmp.137(%tmp.138);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 79 16 ]
+        %tmp.139 = lgetv %dc;
+        %tmp.140 = getv function %tmp.139 :drawCircle;
+        %tmp.141 = 175;
+        %tmp.142 = 119;
+        %tmp.143 = 205;
+        invoke %tmp.139 %tmp.140(%tmp.141, %tmp.142, %tmp.143);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 80 16 ]
+        %tmp.144 = lgetv %dc;
+        %tmp.145 = getv function %tmp.144 :setColor;
+        %tmp.146 = getm $.Toybox.Graphics;
+        %tmp.147 = getv %tmp.146 :COLOR_WHITE;
+        %tmp.148 = getm $.Toybox.Graphics;
+        %tmp.149 = getv %tmp.148 :COLOR_TRANSPARENT;
+        invoke %tmp.144 %tmp.145(%tmp.147, %tmp.149);
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_76_24_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_76_12_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_76_12_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 82 12 ]
+        %tmp.151 = getv ? :charIdx;
+        %tmp.153 = lgetv %i.6;
+        %tmp.154 = add %tmp.151 %tmp.153;
+        %tmp.156 = getv ? :input_chars;
+        %tmp.157 = getv function %tmp.156 :length;
+        %tmp.158 = invoke %tmp.156 %tmp.157();
+        %tmp.159 = mod %tmp.154 %tmp.158;
+        lputv %sidx.3 %tmp.159;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 83 12 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_83_12_if_stmt:
+        %tmp.161 = lgetv %sidx.3;
+        %tmp.162 = 0;
+        %tmp.163 = lt %tmp.161 %tmp.162;
+        bf %tmp.163 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_83_12_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_83_12_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_83_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 84 16 ]
+        %tmp.165 = lgetv %sidx.3;
+        %tmp.167 = getv ? :input_chars;
+        %tmp.168 = getv function %tmp.167 :length;
+        %tmp.169 = invoke %tmp.167 %tmp.168();
+        %tmp.170 = add %tmp.165 %tmp.169;
+        lputv %sidx.3 %tmp.170;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_83_26_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_83_12_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_83_12_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 86 12 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_86_12_if_stmt:
+        %tmp.172 = getv ? :input_chars;
+        %tmp.173 = getv function %tmp.172 :substring;
+        %tmp.175 = lgetv %sidx.3;
+        %tmp.177 = lgetv %sidx.3;
+        %tmp.178 = 1;
+        %tmp.179 = add %tmp.177 %tmp.178;
+        %tmp.180 = invoke %tmp.172 %tmp.173(%tmp.175, %tmp.179);
+        %tmp.181 = getv function %tmp.180 :equals;
+        %tmp.182 = "\n";
+        %tmp.183 = invoke %tmp.180 %tmp.181(%tmp.182);
+        bf %tmp.183 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_86_12_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_86_12_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_86_65_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 87 16 ]
+        %tmp.185 = getv ? :INPUT_ENTER;
+        lputv %ch.5 %tmp.185;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_86_65_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_86_12_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_86_12_if_false:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 88 19 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_88_19_if_stmt:
+        %tmp.187 = getv ? :input_chars;
+        %tmp.188 = getv function %tmp.187 :substring;
+        %tmp.190 = lgetv %sidx.3;
+        %tmp.192 = lgetv %sidx.3;
+        %tmp.193 = 1;
+        %tmp.194 = add %tmp.192 %tmp.193;
+        %tmp.195 = invoke %tmp.187 %tmp.188(%tmp.190, %tmp.194);
+        %tmp.196 = getv function %tmp.195 :equals;
+        %tmp.197 = " ";
+        %tmp.198 = invoke %tmp.195 %tmp.196(%tmp.197);
+        bf %tmp.198 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_88_19_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_88_19_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_88_71_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 89 16 ]
+        %tmp.200 = getv ? :INPUT_SPACE;
+        lputv %ch.5 %tmp.200;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_88_71_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_88_19_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_88_19_if_false:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 90 19 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_90_19_if_stmt:
+        %tmp.202 = getv ? :input_chars;
+        %tmp.203 = getv function %tmp.202 :substring;
+        %tmp.205 = lgetv %sidx.3;
+        %tmp.207 = lgetv %sidx.3;
+        %tmp.208 = 1;
+        %tmp.209 = add %tmp.207 %tmp.208;
+        %tmp.210 = invoke %tmp.202 %tmp.203(%tmp.205, %tmp.209);
+        %tmp.211 = getv function %tmp.210 :equals;
+        %tmp.212 = "<";
+        %tmp.213 = invoke %tmp.210 %tmp.211(%tmp.212);
+        bf %tmp.213 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_90_19_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_90_19_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_90_71_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 91 16 ]
+        %tmp.215 = getv ? :INPUT_BACK;
+        lputv %ch.5 %tmp.215;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_90_71_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_90_19_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_90_19_if_false:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 92 19 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_92_19_if_stmt:
+        %tmp.217 = getv ? :input_chars;
+        %tmp.218 = getv function %tmp.217 :substring;
+        %tmp.220 = lgetv %sidx.3;
+        %tmp.222 = lgetv %sidx.3;
+        %tmp.223 = 1;
+        %tmp.224 = add %tmp.222 %tmp.223;
+        %tmp.225 = invoke %tmp.217 %tmp.218(%tmp.220, %tmp.224);
+        %tmp.226 = getv function %tmp.225 :equals;
+        %tmp.227 = "*";
+        %tmp.228 = invoke %tmp.225 %tmp.226(%tmp.227);
+        bf %tmp.228 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_92_19_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_92_19_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_92_71_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 93 16 ]
+        %tmp.230 = getv ? :INPUT_OK;
+        lputv %ch.5 %tmp.230;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 95 16 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_95_16_if_stmt:
+        %tmp.232 = getv ? :inputStr;
+        %tmp.233 = getv function %tmp.232 :length;
+        %tmp.234 = invoke %tmp.232 %tmp.233();
+        %tmp.235 = 2;
+        %tmp.236 = lt %tmp.234 %tmp.235;
+        bf %tmp.236 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_95_16_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_95_16_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_95_43_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 96 20 ]
+        %tmp.237 = lgetv %dc;
+        %tmp.238 = getv function %tmp.237 :setColor;
+        %tmp.239 = getm $.Toybox.Graphics;
+        %tmp.240 = getv %tmp.239 :COLOR_LT_GRAY;
+        %tmp.241 = getm $.Toybox.Graphics;
+        %tmp.242 = getv %tmp.241 :COLOR_TRANSPARENT;
+        invoke %tmp.237 %tmp.238(%tmp.240, %tmp.242);
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_95_43_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_95_16_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_95_16_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_92_71_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_92_19_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_92_19_if_false:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_99_18_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 100 16 ]
+        %tmp.244 = lgetv %sidx.3;
+        %tmp.245 = 1;
+        %tmp.246 = add %tmp.244 %tmp.245;
+        lputv %eidx.4 %tmp.246;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 101 16 ]
+        %tmp.248 = getv ? :input_chars;
+        %tmp.249 = getv function %tmp.248 :substring;
+        %tmp.251 = lgetv %sidx.3;
+        %tmp.253 = lgetv %eidx.4;
+        %tmp.254 = invoke %tmp.248 %tmp.249(%tmp.251, %tmp.253);
+        lputv %ch.5 %tmp.254;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_99_18_stop:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_92_19_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_90_19_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_88_19_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_86_12_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 103 12 ]
+        %tmp.255 = lgetv %dc;
+        %tmp.256 = getv function %tmp.255 :drawText;
+        %tmp.258 = getv ? :PICKER_X;
+        %tmp.260 = getv ? :PICKER_WIDTH;
+        %tmp.261 = 2;
+        %tmp.262 = div %tmp.260 %tmp.261;
+        %tmp.263 = add %tmp.258 %tmp.262;
+        %tmp.265 = getv ? :DEVICE_HEIGHT;
+        %tmp.266 = 2;
+        %tmp.267 = div %tmp.265 %tmp.266;
+        %tmp.269 = lgetv %i.6;
+        %tmp.270 = 27;
+        %tmp.271 = mul %tmp.269 %tmp.270;
+        %tmp.272 = add %tmp.267 %tmp.271;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_103_73_begin:
+        %tmp.274 = lgetv %i.6;
+        %tmp.275 = 0;
+        %tmp.276 = eq %tmp.274 %tmp.275;
+        bf %tmp.276 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_103_73_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_103_73_true:
+        %tmp.278 = getv ? :FONT_PICKER_LETTER_SELECTED;
+        push %tmp.278;
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_103_73_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_103_73_false:
+        %tmp.280 = getv ? :FONT_PICKER_LETTER_NOT_SELECTED;
+        push %tmp.280;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_103_73_end:
+        %tmp.281 = phi [%tmp.276 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_103_73_begin] [%tmp.278 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_103_73_true] [%tmp.280 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_103_73_false] [%tmp.281 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_103_73_end];
+        %tmp.283 = lgetv %ch.5;
+        %tmp.284 = getm $.Toybox.Graphics;
+        %tmp.285 = getv %tmp.284 :TEXT_JUSTIFY_CENTER;
+        %tmp.286 = getm $.Toybox.Graphics;
+        %tmp.287 = getv %tmp.286 :TEXT_JUSTIFY_VCENTER;
+        %tmp.288 = bitor %tmp.285 %tmp.287;
+        invoke %tmp.255 %tmp.256(%tmp.263, %tmp.272, %tmp.281, %tmp.283, %tmp.288);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 104 12 ]
+        %tmp.289 = lgetv %dc;
+        %tmp.290 = getv function %tmp.289 :setColor;
+        %tmp.291 = getm $.Toybox.Graphics;
+        %tmp.292 = getv %tmp.291 :COLOR_LT_GRAY;
+        %tmp.293 = getm $.Toybox.Graphics;
+        %tmp.294 = getv %tmp.293 :COLOR_TRANSPARENT;
+        invoke %tmp.289 %tmp.290(%tmp.292, %tmp.294);
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_146_stop:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_incr:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 75 ]
+        %tmp.297 = lgetv %i.6;
+        %tmp.298 = add %tmp.297 1;
+        lputv %i.6 %tmp.298;
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_test;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_75_8_for_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 107 8 ]
+        %tmp.299 = lgetv %dc;
+        %tmp.300 = getv function %tmp.299 :drawText;
+        %tmp.301 = 110;
+        %tmp.302 = 164;
+        %tmp.304 = getv ? :FONT_PICKER_VALUE;
+        %tmp.306 = getv ? :inputStr;
+        %tmp.307 = getm $.Toybox.Graphics;
+        %tmp.308 = getv %tmp.307 :TEXT_JUSTIFY_CENTER;
+        %tmp.309 = getm $.Toybox.Graphics;
+        %tmp.310 = getv %tmp.309 :TEXT_JUSTIFY_VCENTER;
+        %tmp.311 = bitor %tmp.308 %tmp.310;
+        invoke %tmp.299 %tmp.300(%tmp.301, %tmp.302, %tmp.304, %tmp.306, %tmp.311);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 108 8 ]
+        %tmp.312 = lgetv %dc;
+        %tmp.313 = getv function %tmp.312 :drawText;
+        %tmp.314 = 110;
+        %tmp.315 = 174;
+        %tmp.317 = getv ? :FONT_PICKER_VALUE;
+        %tmp.319 = getv ? :newStr;
+        %tmp.320 = getm $.Toybox.Graphics;
+        %tmp.321 = getv %tmp.320 :TEXT_JUSTIFY_CENTER;
+        %tmp.322 = getm $.Toybox.Graphics;
+        %tmp.323 = getv %tmp.322 :TEXT_JUSTIFY_VCENTER;
+        %tmp.324 = bitor %tmp.321 %tmp.323;
+        invoke %tmp.312 %tmp.313(%tmp.314, %tmp.315, %tmp.317, %tmp.319, %tmp.324);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 110 8 ]
+        %tmp.325 = lgetv %dc;
+        %tmp.326 = getv function %tmp.325 :setColor;
+        %tmp.327 = getm $.Toybox.Graphics;
+        %tmp.328 = getv %tmp.327 :COLOR_BLUE;
+        %tmp.329 = getm $.Toybox.Graphics;
+        %tmp.330 = getv %tmp.329 :COLOR_TRANSPARENT;
+        invoke %tmp.325 %tmp.326(%tmp.328, %tmp.330);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 112 8 ]
+        %tmp.331 = lgetv %dc;
+        %tmp.332 = getv function %tmp.331 :setPenWidth;
+        %tmp.333 = 1;
+        invoke %tmp.331 %tmp.332(%tmp.333);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 113 8 ]
+        %tmp.334 = lgetv %dc;
+        %tmp.335 = getv function %tmp.334 :drawRectangle;
+        %tmp.337 = getv ? :PICKER_X;
+        %tmp.339 = getv ? :DEVICE_HEIGHT;
+        %tmp.340 = 2;
+        %tmp.341 = div %tmp.339 %tmp.340;
+        %tmp.343 = lgetv %pickerFontHeight.2;
+        %tmp.344 = 2;
+        %tmp.345 = div %tmp.343 %tmp.344;
+        %tmp.346 = sub %tmp.341 %tmp.345;
+        %tmp.348 = getv ? :PICKER_WIDTH;
+        %tmp.350 = lgetv %pickerFontHeight.2;
+        %tmp.351 = 2;
+        %tmp.352 = add %tmp.350 %tmp.351;
+        invoke %tmp.334 %tmp.335(%tmp.337, %tmp.346, %tmp.348, %tmp.352);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 114 8 ]
+        %tmp.353 = lgetv %dc;
+        %tmp.354 = getv function %tmp.353 :drawRectangle;
+        %tmp.356 = getv ? :PICKER_X;
+        %tmp.357 = 1;
+        %tmp.358 = sub %tmp.356 %tmp.357;
+        %tmp.360 = getv ? :DEVICE_HEIGHT;
+        %tmp.361 = 2;
+        %tmp.362 = div %tmp.360 %tmp.361;
+        %tmp.364 = lgetv %pickerFontHeight.2;
+        %tmp.365 = 2;
+        %tmp.366 = div %tmp.364 %tmp.365;
+        %tmp.367 = sub %tmp.362 %tmp.366;
+        %tmp.368 = 1;
+        %tmp.369 = sub %tmp.367 %tmp.368;
+        %tmp.371 = getv ? :PICKER_WIDTH;
+        %tmp.372 = 2;
+        %tmp.373 = add %tmp.371 %tmp.372;
+        %tmp.375 = lgetv %pickerFontHeight.2;
+        %tmp.376 = 2;
+        %tmp.377 = add %tmp.375 %tmp.376;
+        invoke %tmp.353 %tmp.354(%tmp.358, %tmp.369, %tmp.373, %tmp.377);
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_54_26_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 118; ]
+    function splitString(dc, FONT_PICKER_VALUE, inputStr, margin) {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 120 0 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_stop" ]
+        %width.1 = local;
+        %tmp.1 = lgetv %dc;
+        %tmp.2 = getv function %tmp.1 :getWidth;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        %tmp.5 = lgetv %margin;
+        %tmp.6 = 2;
+        %tmp.7 = mul %tmp.5 %tmp.6;
+        %tmp.8 = sub %tmp.3 %tmp.7;
+        lputv %width.1 %tmp.8;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 121 0 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_stop" ]
+        %strLen.2 = local;
+        %tmp.9 = lgetv %inputStr;
+        %tmp.10 = getv function %tmp.9 :length;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        lputv %strLen.2 %tmp.11;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 122 0 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_stop" ]
+        %firstChar.3 = local;
+        %tmp.12 = 0;
+        lputv %firstChar.3 %tmp.12;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 123 0 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_stop" ]
+        %lastChar.4 = local;
+        %tmp.13 = 0;
+        lputv %lastChar.4 %tmp.13;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 124 0 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_stop" ]
+        %newStr.5 = local;
+        %tmp.14 = "";
+        lputv %newStr.5 %tmp.14;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 126 0 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_126_0_if_stmt:
+        %tmp.16 = lgetv %strLen.2;
+        %tmp.17 = 0;
+        %tmp.18 = eq %tmp.16 %tmp.17;
+        bf %tmp.18 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_126_0_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_126_0_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_126_15_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 126 16 ]
+        %tmp.19 = "";
+        ret %tmp.19;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_126_15_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_126_0_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_126_0_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 128 0 ]
+        for @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_test @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_incr @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_init:
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_begin" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_end" ]
+        %i.6 = local;
+        %tmp.20 = 0;
+        lputv %i.6 %tmp.20;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_test:
+        %tmp.22 = lgetv %i.6;
+        %tmp.24 = lgetv %strLen.2;
+        %tmp.25 = lte %tmp.22 %tmp.24;
+        bf %tmp.25 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_begin:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_33_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 129 0 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_33_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_33_stop" ]
+        %char.7 = local;
+        %tmp.26 = lgetv %inputStr;
+        %tmp.27 = getv function %tmp.26 :substring;
+        %tmp.29 = lgetv %i.6;
+        %tmp.31 = lgetv %i.6;
+        %tmp.32 = 1;
+        %tmp.33 = add %tmp.31 %tmp.32;
+        %tmp.34 = invoke %tmp.26 %tmp.27(%tmp.29, %tmp.33);
+        lputv %char.7 %tmp.34;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 130 0 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_0_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_3_begin:
+        %tmp.35 = lgetv %char.7;
+        %tmp.36 = getv function %tmp.35 :equals;
+        %tmp.37 = " ";
+        %tmp.38 = invoke %tmp.35 %tmp.36(%tmp.37);
+        %tmp.39 = dup %tmp.38;
+        bt %tmp.39 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_23_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_23_false:
+        %tmp.41 = lgetv %i.6;
+        %tmp.43 = lgetv %strLen.2;
+        %tmp.44 = eq %tmp.41 %tmp.43;
+        %tmp.45 = or %tmp.38 %tmp.44;
+        push %tmp.45;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_23_end:
+        %tmp.46 = phi [%tmp.39 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_3_begin] [%tmp.45 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_23_false] [%tmp.46 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_23_end];
+        bf %tmp.46 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_0_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_0_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_35_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 131 0 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_131_0_if_stmt:
+        %tmp.47 = lgetv %dc;
+        %tmp.48 = getv function %tmp.47 :getTextWidthInPixels;
+        %tmp.49 = lgetv %inputStr;
+        %tmp.50 = getv function %tmp.49 :substring;
+        %tmp.52 = lgetv %firstChar.3;
+        %tmp.54 = lgetv %i.6;
+        %tmp.55 = invoke %tmp.49 %tmp.50(%tmp.52, %tmp.54);
+        %tmp.57 = lgetv %FONT_PICKER_VALUE;
+        %tmp.58 = invoke %tmp.47 %tmp.48(%tmp.55, %tmp.57);
+        %tmp.60 = lgetv %width.1;
+        %tmp.61 = lt %tmp.58 %tmp.60;
+        bf %tmp.61 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_131_0_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_131_0_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_131_88_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 132 0 ]
+        %tmp.63 = lgetv %i.6;
+        lputv %lastChar.4 %tmp.63;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_131_88_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_131_0_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_131_0_if_false:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_134_5_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 135 0 ]
+        %tmp.64 = lgetv %newStr.5;
+        %tmp.65 = lgetv %inputStr;
+        %tmp.66 = getv function %tmp.65 :substring;
+        %tmp.68 = lgetv %firstChar.3;
+        %tmp.70 = lgetv %lastChar.4;
+        %tmp.71 = invoke %tmp.65 %tmp.66(%tmp.68, %tmp.70);
+        %tmp.72 = "\n";
+        %tmp.73 = add %tmp.71 %tmp.72;
+        %tmp.74 = add %tmp.64 %tmp.73;
+        lputv %newStr.5 %tmp.74;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 136 0 ]
+        %tmp.76 = lgetv %lastChar.4;
+        %tmp.77 = 1;
+        %tmp.78 = add %tmp.76 %tmp.77;
+        lputv %firstChar.3 %tmp.78;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_134_5_stop:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_131_0_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_35_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_0_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_130_0_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_33_stop:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_incr:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 128 ]
+        %tmp.81 = lgetv %i.6;
+        %tmp.82 = add %tmp.81 1;
+        lputv %i.6 %tmp.82;
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_test;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_128_0_for_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 140 0 ]
+        %tmp.83 = lgetv %newStr.5;
+        %tmp.84 = lgetv %inputStr;
+        %tmp.85 = getv function %tmp.84 :substring;
+        %tmp.87 = lgetv %firstChar.3;
+        %tmp.89 = lgetv %strLen.2;
+        %tmp.90 = invoke %tmp.84 %tmp.85(%tmp.87, %tmp.89);
+        %tmp.91 = add %tmp.83 %tmp.90;
+        lputv %newStr.5 %tmp.91;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 141 0 ]
+        %tmp.93 = lgetv %newStr.5;
+        ret %tmp.93;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_118_65_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 145; ]
+    function setCharIdx(idx) {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_145_29_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 146 8 ]
+        %tmp.2 = lgetv %idx;
+        putv self :charIdx %tmp.2;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 147 8 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_147_8_if_stmt:
+        %tmp.4 = getv ? :charIdx;
+        %tmp.5 = 0;
+        %tmp.6 = lt %tmp.4 %tmp.5;
+        bf %tmp.6 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_147_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_147_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_147_25_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 148 12 ]
+        %tmp.8 = getv ? :charIdx;
+        %tmp.10 = getv ? :input_chars;
+        %tmp.11 = getv function %tmp.10 :length;
+        %tmp.12 = invoke %tmp.10 %tmp.11();
+        %tmp.13 = add %tmp.8 %tmp.12;
+        putv self :charIdx %tmp.13;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_147_25_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_147_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_147_8_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_145_29_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 152; ]
+    function charSelected() {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_152_28_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 154 8 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_8_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_12_begin:
+        %tmp.2 = getv ? :input_chars;
+        %tmp.3 = getv function %tmp.2 :length;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        %tmp.6 = getv ? :INPUT_LETTERS;
+        %tmp.7 = getv function %tmp.6 :length;
+        %tmp.8 = invoke %tmp.6 %tmp.7();
+        %tmp.9 = gte %tmp.4 %tmp.8;
+        %tmp.10 = dup %tmp.9;
+        bf %tmp.10 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_62_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_62_true:
+        %tmp.12 = getv ? :charIdx;
+        %tmp.14 = getv ? :INPUT_LETTERS;
+        %tmp.15 = getv function %tmp.14 :length;
+        %tmp.16 = invoke %tmp.14 %tmp.15();
+        %tmp.17 = lt %tmp.12 %tmp.16;
+        %tmp.18 = and %tmp.9 %tmp.17;
+        push %tmp.18;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_62_end:
+        %tmp.19 = phi [%tmp.10 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_12_begin] [%tmp.18 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_62_true] [%tmp.19 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_62_end];
+        bf %tmp.19 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_8_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_96_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 155 12 ]
+        %tmp.21 = getv ? :inputStr;
+        %tmp.23 = getv ? :input_chars;
+        %tmp.24 = getv function %tmp.23 :substring;
+        %tmp.26 = getv ? :charIdx;
+        %tmp.28 = getv ? :charIdx;
+        %tmp.29 = 1;
+        %tmp.30 = add %tmp.28 %tmp.29;
+        %tmp.31 = invoke %tmp.23 %tmp.24(%tmp.26, %tmp.30);
+        %tmp.32 = add %tmp.21 %tmp.31;
+        putv self :inputStr %tmp.32;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_96_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_8_if_false:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 156 15 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_156_15_if_stmt:
+        %tmp.34 = getv ? :input_chars;
+        %tmp.35 = getv function %tmp.34 :substring;
+        %tmp.37 = getv ? :charIdx;
+        %tmp.39 = getv ? :charIdx;
+        %tmp.40 = 1;
+        %tmp.41 = add %tmp.39 %tmp.40;
+        %tmp.42 = invoke %tmp.34 %tmp.35(%tmp.37, %tmp.41);
+        %tmp.43 = getv function %tmp.42 :equals;
+        %tmp.44 = "<";
+        %tmp.45 = invoke %tmp.42 %tmp.43(%tmp.44);
+        bf %tmp.45 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_156_15_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_156_15_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_156_73_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 157 12 ]
+        %tmp.47 = getv ? :inputStr;
+        %tmp.48 = getv function %tmp.47 :substring;
+        %tmp.49 = 0;
+        %tmp.51 = getv ? :inputStr;
+        %tmp.52 = getv function %tmp.51 :length;
+        %tmp.53 = invoke %tmp.51 %tmp.52();
+        %tmp.54 = 1;
+        %tmp.55 = sub %tmp.53 %tmp.54;
+        %tmp.56 = invoke %tmp.47 %tmp.48(%tmp.49, %tmp.55);
+        putv self :inputStr %tmp.56;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 160 12 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_160_12_if_stmt:
+        %tmp.58 = getv ? :inputStr;
+        %tmp.59 = getv function %tmp.58 :length;
+        %tmp.60 = invoke %tmp.58 %tmp.59();
+        %tmp.61 = 30;
+        %tmp.62 = lt %tmp.60 %tmp.61;
+        bf %tmp.62 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_160_12_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_160_12_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_160_40_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 161 16 ]
+        %tmp.64 = getv ? :INPUT_LETTERS;
+        %tmp.66 = getv ? :INPUT_CONTROLS;
+        %tmp.67 = add %tmp.64 %tmp.66;
+        putv self :input_chars %tmp.67;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 162 16 ]
+        %tmp.69 = getv ? :INPUT_LETTERS;
+        %tmp.70 = getv function %tmp.69 :length;
+        %tmp.71 = invoke %tmp.69 %tmp.70();
+        putv self :charIdx %tmp.71;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_160_40_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_160_12_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_160_12_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_156_73_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_156_15_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_156_15_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_154_8_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 167 8 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_167_8_if_stmt:
+        %tmp.73 = getv ? :inputStr;
+        %tmp.74 = getv function %tmp.73 :length;
+        %tmp.75 = invoke %tmp.73 %tmp.74();
+        %tmp.76 = 30;
+        %tmp.77 = gt %tmp.75 %tmp.76;
+        bf %tmp.77 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_167_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_167_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_167_36_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 168 12 ]
+        %tmp.79 = getv ? :INPUT_CONTROLS;
+        putv self :input_chars %tmp.79;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 169 12 ]
+        %tmp.80 = 1;
+        putv self :charIdx %tmp.80;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_167_36_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_167_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_167_8_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_152_28_stop:
+    }
+}
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 176; ]
+class TextPickerDelegate extends Ui.BehaviorDelegate{
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 176; ]
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 176; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 178; @position = 17; ]
+    static
+    const LONG_PRESS_UPDATE_FREQUENCY = 250;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 180; @position = 8; ]
+    var picker;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 181; @position = 8; ]
+    var longPressTimer;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 183; ]
+    function initialize(the_picker) as Void {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_183_36_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 184 8 ]
+        %tmp.2 = lgetv %the_picker;
+        putv self :picker %tmp.2;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 185 8 ]
+        %tmp.4 = getv ? :BehaviorDelegate;
+        %tmp.5 = getv function %tmp.4 :initialize;
+        invoke %tmp.4 %tmp.5();
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_183_36_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 188; ]
+    function onKey(event) {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_188_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 189 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_188_26_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_188_26_stop" ]
+        %key.1 = local;
+        %tmp.1 = lgetv %event;
+        %tmp.2 = getv function %tmp.1 :getKey;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %key.1 %tmp.3;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 190 8 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_8_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_12_begin:
+        %tmp.5 = lgetv %key.1;
+        %tmp.6 = getm $.Toybox.WatchUi;
+        %tmp.7 = getv %tmp.6 :KEY_ENTER;
+        %tmp.8 = eq %tmp.5 %tmp.7;
+        %tmp.9 = dup %tmp.8;
+        bt %tmp.9 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_35_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_35_false:
+        %tmp.11 = lgetv %key.1;
+        %tmp.12 = getm $.Toybox.WatchUi;
+        %tmp.13 = getv %tmp.12 :KEY_START;
+        %tmp.14 = eq %tmp.11 %tmp.13;
+        %tmp.15 = or %tmp.8 %tmp.14;
+        push %tmp.15;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_35_end:
+        %tmp.16 = phi [%tmp.9 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_12_begin] [%tmp.15 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_35_false] [%tmp.16 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_35_end];
+        bf %tmp.16 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_8_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_56_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 191 12 ]
+        %tmp.17 = self;
+        %tmp.18 = getv function %tmp.17 :onSelect;
+        %tmp.19 = invoke %tmp.17 %tmp.18();
+        ret %tmp.19;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_56_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_8_if_false:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 192 15 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_15_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_19_begin:
+        %tmp.21 = lgetv %key.1;
+        %tmp.22 = getm $.Toybox.WatchUi;
+        %tmp.23 = getv %tmp.22 :KEY_ESC;
+        %tmp.24 = eq %tmp.21 %tmp.23;
+        %tmp.25 = dup %tmp.24;
+        bt %tmp.25 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_40_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_40_false:
+        %tmp.27 = lgetv %key.1;
+        %tmp.28 = getm $.Toybox.WatchUi;
+        %tmp.29 = getv %tmp.28 :KEY_LAP;
+        %tmp.30 = eq %tmp.27 %tmp.29;
+        %tmp.31 = or %tmp.24 %tmp.30;
+        push %tmp.31;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_40_end:
+        %tmp.32 = phi [%tmp.25 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_19_begin] [%tmp.31 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_40_false] [%tmp.32 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_40_end];
+        bf %tmp.32 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_15_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_15_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_59_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 193 12 ]
+        %tmp.33 = self;
+        %tmp.34 = getv function %tmp.33 :onBack;
+        %tmp.35 = invoke %tmp.33 %tmp.34();
+        ret %tmp.35;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_59_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_15_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_15_if_false:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 194 15 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_15_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_19_begin:
+        %tmp.37 = lgetv %key.1;
+        %tmp.38 = getm $.Toybox.WatchUi;
+        %tmp.39 = getv %tmp.38 :KEY_UP;
+        %tmp.40 = eq %tmp.37 %tmp.39;
+        %tmp.41 = dup %tmp.40;
+        bt %tmp.41 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_39_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_39_false:
+        %tmp.43 = lgetv %key.1;
+        %tmp.44 = getm $.Toybox.WatchUi;
+        %tmp.45 = getv %tmp.44 :KEY_MODE;
+        %tmp.46 = eq %tmp.43 %tmp.45;
+        %tmp.47 = or %tmp.40 %tmp.46;
+        push %tmp.47;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_39_end:
+        %tmp.48 = phi [%tmp.41 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_19_begin] [%tmp.47 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_39_false] [%tmp.48 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_39_end];
+        bf %tmp.48 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_15_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_15_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_59_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 195 12 ]
+        %tmp.49 = self;
+        %tmp.50 = getv function %tmp.49 :onPreviousPage;
+        %tmp.51 = invoke %tmp.49 %tmp.50();
+        ret %tmp.51;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_59_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_15_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_15_if_false:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 196 15 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_15_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_19_begin:
+        %tmp.53 = lgetv %key.1;
+        %tmp.54 = getm $.Toybox.WatchUi;
+        %tmp.55 = getv %tmp.54 :KEY_DOWN;
+        %tmp.56 = eq %tmp.53 %tmp.55;
+        %tmp.57 = dup %tmp.56;
+        bt %tmp.57 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_41_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_41_false:
+        %tmp.59 = lgetv %key.1;
+        %tmp.60 = getm $.Toybox.WatchUi;
+        %tmp.61 = getv %tmp.60 :KEY_CLOCK;
+        %tmp.62 = eq %tmp.59 %tmp.61;
+        %tmp.63 = or %tmp.56 %tmp.62;
+        push %tmp.63;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_41_end:
+        %tmp.64 = phi [%tmp.57 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_19_begin] [%tmp.63 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_41_false] [%tmp.64 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_41_end];
+        bf %tmp.64 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_15_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_15_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_62_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 197 12 ]
+        %tmp.65 = self;
+        %tmp.66 = getv function %tmp.65 :onNextPage;
+        %tmp.67 = invoke %tmp.65 %tmp.66();
+        ret %tmp.67;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_62_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_15_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_196_15_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_194_15_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_192_15_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_190_8_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 199 8 ]
+        %tmp.68 = false;
+        ret %tmp.68;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_188_26_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 203; ]
+    function onKeyPressed(event) {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_203_33_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 204 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_203_33_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_203_33_stop" ]
+        %key.1 = local;
+        %tmp.1 = lgetv %event;
+        %tmp.2 = getv function %tmp.1 :getKey;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %key.1 %tmp.3;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 205 8 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_8_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_12_begin:
+        %tmp.5 = lgetv %key.1;
+        %tmp.6 = getm $.Toybox.WatchUi;
+        %tmp.7 = getv %tmp.6 :KEY_UP;
+        %tmp.8 = eq %tmp.5 %tmp.7;
+        %tmp.9 = dup %tmp.8;
+        bt %tmp.9 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_32_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_32_false:
+        %tmp.11 = lgetv %key.1;
+        %tmp.12 = getm $.Toybox.WatchUi;
+        %tmp.13 = getv %tmp.12 :KEY_MODE;
+        %tmp.14 = eq %tmp.11 %tmp.13;
+        %tmp.15 = or %tmp.8 %tmp.14;
+        push %tmp.15;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_32_end:
+        %tmp.16 = phi [%tmp.9 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_12_begin] [%tmp.15 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_32_false] [%tmp.16 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_32_end];
+        bf %tmp.16 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_8_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_52_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 206 12 ]
+        %tmp.20 = getv ? :Timer;
+        %tmp.21 = getv function ? %tmp.20 :Timer;
+        %tmp.17 = newc %tmp.21 ();
+        putv self :longPressTimer %tmp.17;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 207 12 ]
+        %tmp.23 = getv ? :longPressTimer;
+        %tmp.24 = getv function %tmp.23 :start;
+        %tmp.25 = self;
+        %tmp.26 = getv function %tmp.25 :method;
+        %tmp.28 = const :onPreviousPage;
+        %tmp.29 = invoke %tmp.25 %tmp.26(%tmp.28);
+        %tmp.31 = getv ? :LONG_PRESS_UPDATE_FREQUENCY;
+        %tmp.32 = true;
+        invoke %tmp.23 %tmp.24(%tmp.29, %tmp.31, %tmp.32);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 208 12 ]
+        %tmp.33 = true;
+        ret %tmp.33;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_52_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_8_if_false:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 209 15 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_15_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_19_begin:
+        %tmp.35 = lgetv %key.1;
+        %tmp.36 = getm $.Toybox.WatchUi;
+        %tmp.37 = getv %tmp.36 :KEY_DOWN;
+        %tmp.38 = eq %tmp.35 %tmp.37;
+        %tmp.39 = dup %tmp.38;
+        bt %tmp.39 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_41_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_41_false:
+        %tmp.41 = lgetv %key.1;
+        %tmp.42 = getm $.Toybox.WatchUi;
+        %tmp.43 = getv %tmp.42 :KEY_CLOCK;
+        %tmp.44 = eq %tmp.41 %tmp.43;
+        %tmp.45 = or %tmp.38 %tmp.44;
+        push %tmp.45;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_41_end:
+        %tmp.46 = phi [%tmp.39 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_19_begin] [%tmp.45 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_41_false] [%tmp.46 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_41_end];
+        bf %tmp.46 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_15_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_15_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_62_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 210 12 ]
+        %tmp.50 = getv ? :Timer;
+        %tmp.51 = getv function ? %tmp.50 :Timer;
+        %tmp.47 = newc %tmp.51 ();
+        putv self :longPressTimer %tmp.47;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 211 12 ]
+        %tmp.53 = getv ? :longPressTimer;
+        %tmp.54 = getv function %tmp.53 :start;
+        %tmp.55 = self;
+        %tmp.56 = getv function %tmp.55 :method;
+        %tmp.58 = const :onNextPage;
+        %tmp.59 = invoke %tmp.55 %tmp.56(%tmp.58);
+        %tmp.61 = getv ? :LONG_PRESS_UPDATE_FREQUENCY;
+        %tmp.62 = true;
+        invoke %tmp.53 %tmp.54(%tmp.59, %tmp.61, %tmp.62);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 212 12 ]
+        %tmp.63 = true;
+        ret %tmp.63;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_62_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_15_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_209_15_if_end:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_205_8_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 214 8 ]
+        %tmp.64 = false;
+        ret %tmp.64;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_203_33_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 217; ]
+    function onKeyReleased(event) {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_217_34_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 218 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_217_34_start" "C_Users_Tom_eclipse_workspace_App_source_Picker_mc_217_34_stop" ]
+        %key.1 = local;
+        %tmp.1 = lgetv %event;
+        %tmp.2 = getv function %tmp.1 :getKey;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %key.1 %tmp.3;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 219 8 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_8_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_12_begin:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_12_begin:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_12_begin:
+        %tmp.5 = lgetv %key.1;
+        %tmp.6 = getm $.Toybox.WatchUi;
+        %tmp.7 = getv %tmp.6 :KEY_UP;
+        %tmp.8 = eq %tmp.5 %tmp.7;
+        %tmp.9 = dup %tmp.8;
+        bt %tmp.9 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_32_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_32_false:
+        %tmp.11 = lgetv %key.1;
+        %tmp.12 = getm $.Toybox.WatchUi;
+        %tmp.13 = getv %tmp.12 :KEY_MODE;
+        %tmp.14 = eq %tmp.11 %tmp.13;
+        %tmp.15 = or %tmp.8 %tmp.14;
+        push %tmp.15;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_32_end:
+        %tmp.16 = phi [%tmp.9 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_12_begin] [%tmp.15 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_32_false] [%tmp.16 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_32_end];
+        %tmp.17 = dup %tmp.16;
+        bt %tmp.17 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_54_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_54_false:
+        %tmp.19 = lgetv %key.1;
+        %tmp.20 = getm $.Toybox.WatchUi;
+        %tmp.21 = getv %tmp.20 :KEY_DOWN;
+        %tmp.22 = eq %tmp.19 %tmp.21;
+        %tmp.23 = or %tmp.16 %tmp.22;
+        push %tmp.23;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_54_end:
+        %tmp.24 = phi [%tmp.17 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_12_begin] [%tmp.23 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_54_false] [%tmp.24 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_54_end];
+        %tmp.25 = dup %tmp.24;
+        bt %tmp.25 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_76_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_76_false:
+        %tmp.27 = lgetv %key.1;
+        %tmp.28 = getm $.Toybox.WatchUi;
+        %tmp.29 = getv %tmp.28 :KEY_CLOCK;
+        %tmp.30 = eq %tmp.27 %tmp.29;
+        %tmp.31 = or %tmp.24 %tmp.30;
+        push %tmp.31;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_76_end:
+        %tmp.32 = phi [%tmp.25 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_12_begin] [%tmp.31 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_76_false] [%tmp.32 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_76_end];
+        bf %tmp.32 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_97_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 220 12 ]
+        %tmp.34 = getv ? :longPressTimer;
+        %tmp.35 = getv function %tmp.34 :stop;
+        invoke %tmp.34 %tmp.35();
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 221 12 ]
+        %tmp.36 = null;
+        putv self :longPressTimer %tmp.36;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 222 12 ]
+        %tmp.37 = true;
+        ret %tmp.37;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_97_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_219_8_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 224 8 ]
+        %tmp.38 = false;
+        ret %tmp.38;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_217_34_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 227; ]
+    function onSelect() {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_227_24_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 228 8 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_228_8_if_stmt:
+        %tmp.2 = getv ? :picker;
+        %tmp.3 = getv %tmp.2 :input_chars;
+        %tmp.4 = getv function %tmp.3 :substring;
+        %tmp.6 = getv ? :picker;
+        %tmp.7 = getv %tmp.6 :charIdx;
+        %tmp.9 = getv ? :picker;
+        %tmp.10 = getv %tmp.9 :charIdx;
+        %tmp.11 = 1;
+        %tmp.12 = add %tmp.10 %tmp.11;
+        %tmp.13 = invoke %tmp.3 %tmp.4(%tmp.7, %tmp.12);
+        %tmp.14 = getv function %tmp.13 :equals;
+        %tmp.15 = "*";
+        %tmp.16 = invoke %tmp.13 %tmp.14(%tmp.15);
+        bf %tmp.16 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_228_8_if_false;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_228_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_228_87_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 230 12 ]
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_230_12_if_stmt:
+        %tmp.18 = getv ? :picker;
+        %tmp.19 = getv %tmp.18 :inputStr;
+        %tmp.20 = getv function %tmp.19 :length;
+        %tmp.21 = invoke %tmp.19 %tmp.20();
+        %tmp.22 = 1;
+        %tmp.23 = lt %tmp.21 %tmp.22;
+        bf %tmp.23 @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_230_12_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_230_12_if_true:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_230_46_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 231 16 ]
+        %tmp.24 = true;
+        ret %tmp.24;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_230_46_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_230_12_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_230_12_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 235 12 ]
+        %tmp.25 = getm $.Toybox.Application;
+        %tmp.26 = getv %tmp.25 :Properties;
+        %tmp.27 = getv function %tmp.26 :setValue;
+        %tmp.28 = "content";
+        %tmp.30 = getv ? :inputStr;
+        %tmp.32 = getv ? :newStr;
+        %tmp.33 = add %tmp.30 %tmp.32;
+        invoke %tmp.26 %tmp.27(%tmp.28, %tmp.33);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 240 12 ]
+        %tmp.34 = getm $.Toybox.WatchUi;
+        %tmp.35 = getv function %tmp.34 :pushView;
+        %tmp.39 = getv ? :DiscordWebhookView;
+        %tmp.36 = newc %tmp.39 ();
+        %tmp.43 = getv ? :DiscordWebhookDelegate;
+        %tmp.40 = newc %tmp.43 ();
+        %tmp.45 = getv ? :WatchUi;
+        %tmp.46 = getv %tmp.45 :SLIDE_UP;
+        invoke %tmp.34 %tmp.35(%tmp.36, %tmp.40, %tmp.46);
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_228_87_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_Picker_mc_228_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_228_8_if_false:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_242_15_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 243 12 ]
+        %tmp.48 = getv ? :picker;
+        %tmp.49 = getv function %tmp.48 :charSelected;
+        invoke %tmp.48 %tmp.49();
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 244 12 ]
+        %tmp.50 = getm $.Toybox.WatchUi;
+        %tmp.51 = getv function %tmp.50 :requestUpdate;
+        invoke %tmp.50 %tmp.51();
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_242_15_stop:
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_228_8_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 246 8 ]
+        %tmp.52 = true;
+        ret %tmp.52;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_227_24_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 251; ]
+    function onBack() {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_251_22_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 252 8 ]
+        %tmp.1 = getm $.Toybox.WatchUi;
+        %tmp.2 = getv function %tmp.1 :popView;
+        %tmp.3 = getm $.Toybox.WatchUi;
+        %tmp.4 = getv %tmp.3 :SLIDE_RIGHT;
+        invoke %tmp.1 %tmp.2(%tmp.4);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 253 8 ]
+        %tmp.5 = null;
+        putv self :picker %tmp.5;
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 254 8 ]
+        %tmp.6 = true;
+        ret %tmp.6;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_251_22_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 257; ]
+    function onNextPage() {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_257_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 258 8 ]
+        %tmp.2 = getv ? :picker;
+        %tmp.3 = getv function %tmp.2 :setCharIdx;
+        %tmp.5 = getv ? :picker;
+        %tmp.6 = getv %tmp.5 :charIdx;
+        %tmp.7 = 1;
+        %tmp.8 = add %tmp.6 %tmp.7;
+        %tmp.10 = getv ? :picker;
+        %tmp.11 = getv %tmp.10 :input_chars;
+        %tmp.12 = getv function %tmp.11 :length;
+        %tmp.13 = invoke %tmp.11 %tmp.12();
+        %tmp.14 = mod %tmp.8 %tmp.13;
+        invoke %tmp.2 %tmp.3(%tmp.14);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 259 8 ]
+        %tmp.15 = getm $.Toybox.WatchUi;
+        %tmp.16 = getv function %tmp.15 :requestUpdate;
+        invoke %tmp.15 %tmp.16();
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 260 8 ]
+        %tmp.17 = true;
+        ret %tmp.17;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_257_26_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 263; ]
+    function onPreviousPage() {
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_263_30_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 264 8 ]
+        %tmp.2 = getv ? :picker;
+        %tmp.3 = getv function %tmp.2 :setCharIdx;
+        %tmp.5 = getv ? :picker;
+        %tmp.6 = getv %tmp.5 :charIdx;
+        %tmp.7 = 1;
+        %tmp.8 = sub %tmp.6 %tmp.7;
+        %tmp.10 = getv ? :picker;
+        %tmp.11 = getv %tmp.10 :input_chars;
+        %tmp.12 = getv function %tmp.11 :length;
+        %tmp.13 = invoke %tmp.11 %tmp.12();
+        %tmp.14 = mod %tmp.8 %tmp.13;
+        invoke %tmp.2 %tmp.3(%tmp.14);
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 265 8 ]
+        %tmp.15 = getm $.Toybox.WatchUi;
+        %tmp.16 = getv function %tmp.15 :requestUpdate;
+        invoke %tmp.15 %tmp.16();
+[ "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc" 266 8 ]
+        %tmp.17 = true;
+        ret %tmp.17;
+C_Users_Tom_eclipse_workspace_App_source_Picker_mc_263_30_stop:
+    }
+}
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\Picker.mc"; @line = 1; ]
+<init> {
+}

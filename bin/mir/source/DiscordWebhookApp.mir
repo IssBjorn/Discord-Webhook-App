@@ -1,0 +1,374 @@
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 1; ]
+using Toybox.Application;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 2; ]
+using Toybox.Lang;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 3; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 4; ]
+using Toybox.Graphics as :Gfx;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 6; @position = 4; ]
+var gWidgetStarted = false;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 8; ]
+class DiscordWebhookApp extends Application.AppBase{
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 8; ]
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 8; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 10; ]
+    function initialize() as Void {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_10_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 11 8 ]
+        %tmp.2 = getv ? :AppBase;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_10_26_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 15; ]
+    function onStart(state) {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_15_27_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 16 4 ]
+        %tmp.1 = getm $.Toybox.Application;
+        %tmp.2 = getv %tmp.1 :Properties;
+        %tmp.3 = getv function %tmp.2 :setValue;
+        %tmp.4 = "content";
+        %tmp.5 = "";
+        invoke %tmp.2 %tmp.3(%tmp.4, %tmp.5);
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 17 4 ]
+        %tmp.6 = getm $.Toybox.Application;
+        %tmp.7 = getv %tmp.6 :Properties;
+        %tmp.8 = getv function %tmp.7 :setValue;
+        %tmp.9 = "webhookUrl";
+        %tmp.10 = "";
+        invoke %tmp.7 %tmp.8(%tmp.9, %tmp.10);
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_15_27_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 21; ]
+    function onStop(state) {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 25; ]
+    function getInitialView() {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_25_30_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 26 8 ]
+        %tmp.1 = newa 2;
+        %tmp.5 = getv ? :MenuTestView;
+        %tmp.2 = newc %tmp.5 ();
+        %tmp.6 = dup %tmp.1;
+        %tmp.7 = aputv %tmp.6 0 %tmp.2;
+        %tmp.11 = getv ? :MenuTestDelegate;
+        %tmp.8 = newc %tmp.11 ();
+        %tmp.12 = dup %tmp.7;
+        %tmp.13 = aputv %tmp.12 1 %tmp.8;
+        ret %tmp.13;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_25_30_stop:
+    }
+}
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 31; ]
+class TextPickerSampleView extends WatchUi.View{
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 31; ]
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 31; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 32; @position = 8; ]
+    var devH;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 32; @position = 14; ]
+    var devW;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 34; ]
+    function initialize() as Void {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_34_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 35 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_34_26_start" "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_34_26_stop" ]
+        %deviceSettings.1 = local;
+        %tmp.2 = getv ? :System;
+        %tmp.3 = getv function %tmp.2 :getDeviceSettings;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        lputv %deviceSettings.1 %tmp.4;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 36 8 ]
+        %tmp.5 = lgetv %deviceSettings.1;
+        %tmp.6 = getv %tmp.5 :screenHeight;
+        putv self :devH %tmp.6;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 37 8 ]
+        %tmp.7 = lgetv %deviceSettings.1;
+        %tmp.8 = getv %tmp.7 :screenWidth;
+        putv self :devW %tmp.8;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 38 8 ]
+        %tmp.10 = getv ? :View;
+        %tmp.11 = getv function %tmp.10 :initialize;
+        invoke %tmp.10 %tmp.11();
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_34_26_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 41; ]
+    function onUpdate(dc) {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_41_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 42 8 ]
+        %tmp.1 = getm $;
+        %tmp.2 = false;
+        putv %tmp.1 :gWidgetStarted %tmp.2;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 43 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_41_26_start" "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_41_26_stop" ]
+        %fontHeight.1 = local;
+        %tmp.3 = getm $.Toybox.Graphics;
+        %tmp.4 = getv function %tmp.3 :getFontHeight;
+        %tmp.5 = getm $.Toybox.Graphics;
+        %tmp.6 = getv %tmp.5 :FONT_SYSTEM_MEDIUM;
+        %tmp.7 = invoke %tmp.3 %tmp.4(%tmp.6);
+        lputv %fontHeight.1 %tmp.7;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 44 8 ]
+        %tmp.8 = lgetv %dc;
+        %tmp.9 = getv function %tmp.8 :setColor;
+        %tmp.10 = getm $.Toybox.Graphics;
+        %tmp.11 = getv %tmp.10 :COLOR_TRANSPARENT;
+        %tmp.12 = getm $.Toybox.Graphics;
+        %tmp.13 = getv %tmp.12 :COLOR_BLACK;
+        invoke %tmp.8 %tmp.9(%tmp.11, %tmp.13);
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 45 8 ]
+        %tmp.14 = lgetv %dc;
+        %tmp.15 = getv function %tmp.14 :clear;
+        invoke %tmp.14 %tmp.15();
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 46 8 ]
+        %tmp.16 = lgetv %dc;
+        %tmp.17 = getv function %tmp.16 :setColor;
+        %tmp.18 = getm $.Toybox.Graphics;
+        %tmp.19 = getv %tmp.18 :COLOR_WHITE;
+        %tmp.20 = getm $.Toybox.Graphics;
+        %tmp.21 = getv %tmp.20 :COLOR_TRANSPARENT;
+        invoke %tmp.16 %tmp.17(%tmp.19, %tmp.21);
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 47 8 ]
+        %tmp.22 = lgetv %dc;
+        %tmp.23 = getv function %tmp.22 :drawText;
+        %tmp.25 = getv ? :devW;
+        %tmp.26 = 2;
+        %tmp.27 = div %tmp.25 %tmp.26;
+        %tmp.29 = getv ? :devH;
+        %tmp.30 = 2;
+        %tmp.31 = div %tmp.29 %tmp.30;
+        %tmp.33 = lgetv %fontHeight.1;
+        %tmp.34 = 1.5;
+        %tmp.35 = mul %tmp.33 %tmp.34;
+        %tmp.36 = sub %tmp.31 %tmp.35;
+        %tmp.37 = getm $.Toybox.Graphics;
+        %tmp.38 = getv %tmp.37 :FONT_SYSTEM_LARGE;
+        %tmp.39 = "Text Picker";
+        %tmp.40 = getm $.Toybox.Graphics;
+        %tmp.41 = getv %tmp.40 :TEXT_JUSTIFY_CENTER;
+        %tmp.42 = getm $.Toybox.Graphics;
+        %tmp.43 = getv %tmp.42 :TEXT_JUSTIFY_VCENTER;
+        %tmp.44 = bitor %tmp.41 %tmp.43;
+        invoke %tmp.22 %tmp.23(%tmp.27, %tmp.36, %tmp.38, %tmp.39, %tmp.44);
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 48 8 ]
+        %tmp.45 = lgetv %dc;
+        %tmp.46 = getv function %tmp.45 :drawText;
+        %tmp.48 = getv ? :devW;
+        %tmp.49 = 2;
+        %tmp.50 = div %tmp.48 %tmp.49;
+        %tmp.52 = getv ? :devH;
+        %tmp.53 = 2;
+        %tmp.54 = div %tmp.52 %tmp.53;
+        %tmp.55 = getm $.Toybox.Graphics;
+        %tmp.56 = getv %tmp.55 :FONT_SYSTEM_MEDIUM;
+        %tmp.57 = "Press START";
+        %tmp.58 = getm $.Toybox.Graphics;
+        %tmp.59 = getv %tmp.58 :TEXT_JUSTIFY_CENTER;
+        %tmp.60 = getm $.Toybox.Graphics;
+        %tmp.61 = getv %tmp.60 :TEXT_JUSTIFY_VCENTER;
+        %tmp.62 = bitor %tmp.59 %tmp.61;
+        invoke %tmp.45 %tmp.46(%tmp.50, %tmp.54, %tmp.56, %tmp.57, %tmp.62);
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 49 8 ]
+        %tmp.63 = lgetv %dc;
+        %tmp.64 = getv function %tmp.63 :drawText;
+        %tmp.66 = getv ? :devW;
+        %tmp.67 = 2;
+        %tmp.68 = div %tmp.66 %tmp.67;
+        %tmp.70 = getv ? :devH;
+        %tmp.71 = 2;
+        %tmp.72 = div %tmp.70 %tmp.71;
+        %tmp.74 = lgetv %fontHeight.1;
+        %tmp.75 = add %tmp.72 %tmp.74;
+        %tmp.76 = getm $.Toybox.Graphics;
+        %tmp.77 = getv %tmp.76 :FONT_SYSTEM_MEDIUM;
+        %tmp.78 = "to enter text.";
+        %tmp.79 = getm $.Toybox.Graphics;
+        %tmp.80 = getv %tmp.79 :TEXT_JUSTIFY_CENTER;
+        %tmp.81 = getm $.Toybox.Graphics;
+        %tmp.82 = getv %tmp.81 :TEXT_JUSTIFY_VCENTER;
+        %tmp.83 = bitor %tmp.80 %tmp.82;
+        invoke %tmp.63 %tmp.64(%tmp.68, %tmp.75, %tmp.77, %tmp.78, %tmp.83);
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_41_26_stop:
+    }
+}
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 54; ]
+class TextPickerSampleInput extends WatchUi.BehaviorDelegate{
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 54; ]
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 54; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 56; ]
+    function initialize() as Void {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_56_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 57 8 ]
+        %tmp.2 = getv ? :BehaviorDelegate;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_56_26_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 60; ]
+    function onKey(event) {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_60_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 61 8 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_60_26_start" "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_60_26_stop" ]
+        %key.1 = local;
+        %tmp.1 = lgetv %event;
+        %tmp.2 = getv function %tmp.1 :getKey;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %key.1 %tmp.3;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 62 8 ]
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_8_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_12_begin:
+        %tmp.5 = lgetv %key.1;
+        %tmp.6 = getm $.Toybox.WatchUi;
+        %tmp.7 = getv %tmp.6 :KEY_ENTER;
+        %tmp.8 = eq %tmp.5 %tmp.7;
+        %tmp.9 = dup %tmp.8;
+        bt %tmp.9 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_40_end;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_40_false:
+        %tmp.11 = lgetv %key.1;
+        %tmp.12 = getm $.Toybox.WatchUi;
+        %tmp.13 = getv %tmp.12 :KEY_START;
+        %tmp.14 = eq %tmp.11 %tmp.13;
+        %tmp.15 = or %tmp.8 %tmp.14;
+        push %tmp.15;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_40_end:
+        %tmp.16 = phi [%tmp.9 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_12_begin] [%tmp.15 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_40_false] [%tmp.16 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_40_end];
+        bf %tmp.16 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_8_if_false;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_66_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 63 12 ]
+        %tmp.17 = self;
+        %tmp.18 = getv function %tmp.17 :onSelect;
+        %tmp.19 = invoke %tmp.17 %tmp.18();
+        ret %tmp.19;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_66_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_8_if_false:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 64 15 ]
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_15_if_stmt:
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_19_begin:
+        %tmp.21 = lgetv %key.1;
+        %tmp.22 = getm $.Toybox.WatchUi;
+        %tmp.23 = getv %tmp.22 :KEY_ESC;
+        %tmp.24 = eq %tmp.21 %tmp.23;
+        %tmp.25 = dup %tmp.24;
+        bt %tmp.25 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_45_end;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_45_false:
+        %tmp.27 = lgetv %key.1;
+        %tmp.28 = getm $.Toybox.WatchUi;
+        %tmp.29 = getv %tmp.28 :KEY_LAP;
+        %tmp.30 = eq %tmp.27 %tmp.29;
+        %tmp.31 = or %tmp.24 %tmp.30;
+        push %tmp.31;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_45_end:
+        %tmp.32 = phi [%tmp.25 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_19_begin] [%tmp.31 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_45_false] [%tmp.32 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_45_end];
+        bf %tmp.32 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_15_if_end;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_15_if_true:
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_69_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 65 12 ]
+        %tmp.33 = self;
+        %tmp.34 = getv function %tmp.33 :onBack;
+        %tmp.35 = invoke %tmp.33 %tmp.34();
+        ret %tmp.35;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_69_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_15_if_end;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_64_15_if_end:
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_62_8_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 67 8 ]
+        %tmp.36 = false;
+        ret %tmp.36;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_60_26_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 70; ]
+    function onSelect() {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_70_24_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 71 8 ]
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_71_8_if_stmt:
+        %tmp.1 = getm $;
+        %tmp.2 = getv %tmp.1 :gWidgetStarted;
+        %tmp.3 = not %tmp.2;
+        bf %tmp.3 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_71_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_71_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_71_31_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 72 12 ]
+        %tmp.4 = getm $;
+        %tmp.5 = true;
+        putv %tmp.4 :gWidgetStarted %tmp.5;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 73 12 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_71_31_start" "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_71_31_stop" ]
+        %view.1 = local;
+        %tmp.9 = getv ? :TextPickerView;
+        %tmp.10 = "  DISCORD";
+        %tmp.11 = "Message:";
+        %tmp.12 = 4;
+        %tmp.13 = 6;
+        %tmp.14 = "";
+        %tmp.6 = newc %tmp.9 (%tmp.10, %tmp.11, %tmp.12, %tmp.13, %tmp.14);
+        lputv %view.1 %tmp.6;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 74 12 ]
+        %tmp.15 = getm $.Toybox.WatchUi;
+        %tmp.16 = getv function %tmp.15 :pushView;
+        %tmp.18 = lgetv %view.1;
+        %tmp.22 = getv ? :TextPickerDelegate;
+        %tmp.24 = lgetv %view.1;
+        %tmp.19 = newc %tmp.22 (%tmp.24);
+        %tmp.25 = getm $.Toybox.WatchUi;
+        %tmp.26 = getv %tmp.25 :SLIDE_LEFT;
+        invoke %tmp.15 %tmp.16(%tmp.18, %tmp.19, %tmp.26);
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_71_31_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_71_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_71_8_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 76 8 ]
+        %tmp.27 = true;
+        ret %tmp.27;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_70_24_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 79; ]
+    function onBack() {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_79_22_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 80 8 ]
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_80_8_if_stmt:
+        %tmp.1 = getm $;
+        %tmp.2 = getv %tmp.1 :gWidgetStarted;
+        bf %tmp.2 @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_80_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_80_8_if_true:
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_80_30_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 81 12 ]
+        %tmp.3 = getm $;
+        %tmp.4 = false;
+        putv %tmp.3 :gWidgetStarted %tmp.4;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 82 12 ]
+        %tmp.5 = getm $.Toybox.WatchUi;
+        %tmp.6 = getv function %tmp.5 :popView;
+        %tmp.7 = getm $.Toybox.WatchUi;
+        %tmp.8 = getv %tmp.7 :SLIDE_RIGHT;
+        invoke %tmp.5 %tmp.6(%tmp.8);
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 83 12 ]
+        %tmp.9 = true;
+        ret %tmp.9;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_80_30_stop:
+        goto @C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_80_8_if_end;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_80_8_if_end:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc" 85 8 ]
+        %tmp.10 = false;
+        ret %tmp.10;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookApp_mc_79_22_stop:
+    }
+}
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookApp.mc"; @line = 1; ]
+<init> {
+}

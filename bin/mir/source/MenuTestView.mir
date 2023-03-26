@@ -1,0 +1,62 @@
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc"; @line = 1; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc"; @line = 3; ]
+class MenuTestView extends WatchUi.View{
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc"; @line = 3; ]
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc"; @line = 3; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc"; @line = 5; ]
+    function initialize() as Void {
+C_Users_Tom_eclipse_workspace_App_source_MenuTestView_mc_5_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc" 6 8 ]
+        %tmp.2 = getv ? :View;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+C_Users_Tom_eclipse_workspace_App_source_MenuTestView_mc_5_26_stop:
+    }
+    //! Load your resources here
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc"; @line = 10; ]
+    function onLayout(dc) {
+C_Users_Tom_eclipse_workspace_App_source_MenuTestView_mc_10_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc" 11 8 ]
+        %tmp.1 = self;
+        %tmp.2 = getv function %tmp.1 :setLayout;
+        %tmp.4 = getv ? :Rez;
+        %tmp.5 = getv %tmp.4 :Layouts;
+        %tmp.6 = getv function %tmp.5 :MainLayout;
+        %tmp.8 = lgetv %dc;
+        %tmp.9 = invoke %tmp.5 %tmp.6(%tmp.8);
+        invoke %tmp.1 %tmp.2(%tmp.9);
+C_Users_Tom_eclipse_workspace_App_source_MenuTestView_mc_10_26_stop:
+    }
+    //! Called when this View is brought to the foreground. Restore
+    //! the state of this View and prepare it to be shown. This includes
+    //! loading resources into memory.
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc"; @line = 17; ]
+    function onShow() {
+    }
+    //! Update the view
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc"; @line = 21; ]
+    function onUpdate(dc) {
+C_Users_Tom_eclipse_workspace_App_source_MenuTestView_mc_21_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc" 23 8 ]
+        %tmp.2 = getv ? :View;
+        %tmp.3 = getv function %tmp.2 :onUpdate;
+        %tmp.5 = lgetv %dc;
+        invoke %tmp.2 %tmp.3(%tmp.5);
+C_Users_Tom_eclipse_workspace_App_source_MenuTestView_mc_21_26_stop:
+    }
+    //! Called when this View is removed from the screen. Save the
+    //! state of this View here. This includes freeing resources from
+    //! memory.
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc"; @line = 29; ]
+    function onHide() {
+    }
+}
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\MenuTestView.mc"; @line = 1; ]
+<init> {
+}

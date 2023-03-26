@@ -1,0 +1,50 @@
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc"; @line = 1; ]
+using Toybox.Graphics;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc"; @line = 2; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc"; @line = 4; ]
+class DiscordWebhookView extends WatchUi.View{
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc"; @line = 4; ]
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc"; @line = 4; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc"; @line = 6; ]
+    function initialize() as Void {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookView_mc_6_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc" 7 8 ]
+        %tmp.2 = getv ? :View;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookView_mc_6_26_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc"; @line = 11; ]
+    function onLayout(dc) {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookView_mc_11_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc" 12 8 ]
+        %tmp.1 = self;
+        %tmp.2 = getv function %tmp.1 :setLayout;
+        %tmp.4 = getv ? :Rez;
+        %tmp.5 = getv %tmp.4 :Layouts;
+        %tmp.6 = getv function %tmp.5 :SendLayout;
+        %tmp.8 = lgetv %dc;
+        %tmp.9 = invoke %tmp.5 %tmp.6(%tmp.8);
+        invoke %tmp.1 %tmp.2(%tmp.9);
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookView_mc_11_26_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc"; @line = 16; ]
+    function onUpdate(dc) {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookView_mc_16_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc" 18 8 ]
+        %tmp.2 = getv ? :View;
+        %tmp.3 = getv function %tmp.2 :onUpdate;
+        %tmp.5 = lgetv %dc;
+        invoke %tmp.2 %tmp.3(%tmp.5);
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookView_mc_16_26_stop:
+    }
+}
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookView.mc"; @line = 1; ]
+<init> {
+}

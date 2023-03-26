@@ -1,0 +1,427 @@
+[ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 1; ]
+import Toybox.Lang;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 2; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 3; ]
+using Toybox.WatchUi as :Ui;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 4; ]
+using Toybox.Graphics;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 5; ]
+using Toybox.Graphics as :Gfx;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 7; ]
+module Rez {
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 7; ]
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 8; ]
+    module Drawables {
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 8; ]
+        <init> {
+        }
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 9; @position = 27; initialized = true; ]
+        var id_send as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 10; @position = 27; initialized = true; ]
+        var LauncherIcon as Symbol;
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 13; ]
+    module Fonts {
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 13; ]
+        <init> {
+        }
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 16; ]
+    module JsonData {
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 16; ]
+        <init> {
+        }
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 19; ]
+    module Layouts {
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 19; ]
+        <init> {
+        }
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 20; ]
+        function MainLayout(dc as Graphics.Dc) as Array<WatchUi.Drawable> {
+C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_20_74_start:
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 21 12 ]
+            [ "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_20_74_start" "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_20_74_stop" ]
+            %rez_cmp_local_var_dc_getWidth.1 = local;
+            %tmp.1 = lgetv %dc;
+            %tmp.2 = getv function %tmp.1 :getWidth;
+            %tmp.3 = invoke %tmp.1 %tmp.2();
+            lputv %rez_cmp_local_var_dc_getWidth.1 %tmp.3;
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 23 12 ]
+            [ "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_20_74_start" "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_20_74_stop" ]
+            %rez_cmp_local_text_4032604840.2 = local;
+            %tmp.6 = getm $.Toybox.WatchUi;
+            %tmp.7 = getv function ? %tmp.6 :Text;
+            %tmp.8 = newd 6;
+            %tmp.10 = const :color;
+            %tmp.11 = getm $.Toybox.Graphics;
+            %tmp.12 = getv %tmp.11 :COLOR_BLUE;
+            %tmp.13 = dup %tmp.8;
+            %tmp.14 = aputv %tmp.13 %tmp.10 %tmp.12;
+            %tmp.16 = const :locX;
+            %tmp.18 = lgetv %rez_cmp_local_var_dc_getWidth.1;
+            %tmp.19 = 0.5;
+            %tmp.20 = mul %tmp.18 %tmp.19;
+            %tmp.21 = dup %tmp.14;
+            %tmp.22 = aputv %tmp.21 %tmp.16 %tmp.20;
+            %tmp.24 = const :locY;
+            %tmp.25 = 40;
+            %tmp.26 = dup %tmp.22;
+            %tmp.27 = aputv %tmp.26 %tmp.24 %tmp.25;
+            %tmp.29 = const :text;
+            %tmp.30 = getm $;
+            %tmp.31 = getv %tmp.30 :Rez;
+            %tmp.32 = getv %tmp.31 :Strings;
+            %tmp.33 = getv %tmp.32 :AppName;
+            %tmp.34 = dup %tmp.27;
+            %tmp.35 = aputv %tmp.34 %tmp.29 %tmp.33;
+            %tmp.37 = const :justification;
+            %tmp.38 = getm $.Toybox.Graphics;
+            %tmp.39 = getv %tmp.38 :TEXT_JUSTIFY_CENTER;
+            %tmp.40 = dup %tmp.35;
+            %tmp.41 = aputv %tmp.40 %tmp.37 %tmp.39;
+            %tmp.43 = const :font;
+            %tmp.44 = getm $.Toybox.Graphics;
+            %tmp.45 = getv %tmp.44 :FONT_MEDIUM;
+            %tmp.46 = dup %tmp.41;
+            %tmp.47 = aputv %tmp.46 %tmp.43 %tmp.45;
+            %tmp.4 = newc %tmp.7 (%tmp.47);
+            lputv %rez_cmp_local_text_4032604840.2 %tmp.4;
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 25 12 ]
+            [ "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_20_74_start" "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_20_74_stop" ]
+            %rez_cmp_local_text_2088308893.3 = local;
+            %tmp.50 = getm $.Toybox.WatchUi;
+            %tmp.51 = getv function ? %tmp.50 :Text;
+            %tmp.52 = newd 6;
+            %tmp.54 = const :color;
+            %tmp.55 = getm $.Toybox.Graphics;
+            %tmp.56 = getv %tmp.55 :COLOR_WHITE;
+            %tmp.57 = dup %tmp.52;
+            %tmp.58 = aputv %tmp.57 %tmp.54 %tmp.56;
+            %tmp.60 = const :locX;
+            %tmp.62 = lgetv %rez_cmp_local_var_dc_getWidth.1;
+            %tmp.63 = 0.5;
+            %tmp.64 = mul %tmp.62 %tmp.63;
+            %tmp.65 = dup %tmp.58;
+            %tmp.66 = aputv %tmp.65 %tmp.60 %tmp.64;
+            %tmp.68 = const :locY;
+            %tmp.69 = lgetv %dc;
+            %tmp.70 = getv function %tmp.69 :getHeight;
+            %tmp.71 = invoke %tmp.69 %tmp.70();
+            %tmp.72 = lgetv %dc;
+            %tmp.73 = getv function %tmp.72 :getFontHeight;
+            %tmp.74 = getm $.Toybox.Graphics;
+            %tmp.75 = getv %tmp.74 :FONT_SMALL;
+            %tmp.76 = invoke %tmp.72 %tmp.73(%tmp.75);
+            %tmp.77 = sub %tmp.71 %tmp.76;
+            %tmp.78 = 0.5;
+            %tmp.79 = mul %tmp.77 %tmp.78;
+            %tmp.80 = dup %tmp.66;
+            %tmp.81 = aputv %tmp.80 %tmp.68 %tmp.79;
+            %tmp.83 = const :text;
+            %tmp.84 = getm $;
+            %tmp.85 = getv %tmp.84 :Rez;
+            %tmp.86 = getv %tmp.85 :Strings;
+            %tmp.87 = getv %tmp.86 :Prompt;
+            %tmp.88 = dup %tmp.81;
+            %tmp.89 = aputv %tmp.88 %tmp.83 %tmp.87;
+            %tmp.91 = const :justification;
+            %tmp.92 = getm $.Toybox.Graphics;
+            %tmp.93 = getv %tmp.92 :TEXT_JUSTIFY_CENTER;
+            %tmp.94 = dup %tmp.89;
+            %tmp.95 = aputv %tmp.94 %tmp.91 %tmp.93;
+            %tmp.97 = const :font;
+            %tmp.98 = getm $.Toybox.Graphics;
+            %tmp.99 = getv %tmp.98 :FONT_SMALL;
+            %tmp.100 = dup %tmp.95;
+            %tmp.101 = aputv %tmp.100 %tmp.97 %tmp.99;
+            %tmp.48 = newc %tmp.51 (%tmp.101);
+            lputv %rez_cmp_local_text_2088308893.3 %tmp.48;
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 27 12 ]
+            %tmp.102 = newa Array<WatchUi.Drawable> 2;
+            %tmp.104 = lgetv %rez_cmp_local_text_4032604840.2;
+            %tmp.105 = dup %tmp.102;
+            %tmp.106 = aputv %tmp.105 0 %tmp.104;
+            %tmp.108 = lgetv %rez_cmp_local_text_2088308893.3;
+            %tmp.109 = dup %tmp.106;
+            %tmp.110 = aputv %tmp.109 1 %tmp.108;
+            ret %tmp.110;
+C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_20_74_stop:
+        }
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 30; ]
+        function SendLayout(dc as Graphics.Dc) as Array<WatchUi.Drawable> {
+C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_30_74_start:
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 31 12 ]
+            [ "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_30_74_start" "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_30_74_stop" ]
+            %rez_cmp_local_var_dc_getWidth.1 = local;
+            %tmp.1 = lgetv %dc;
+            %tmp.2 = getv function %tmp.1 :getWidth;
+            %tmp.3 = invoke %tmp.1 %tmp.2();
+            lputv %rez_cmp_local_var_dc_getWidth.1 %tmp.3;
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 33 12 ]
+            [ "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_30_74_start" "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_30_74_stop" ]
+            %rez_cmp_local_text_1165030703.2 = local;
+            %tmp.6 = getm $.Toybox.WatchUi;
+            %tmp.7 = getv function ? %tmp.6 :Text;
+            %tmp.8 = newd 6;
+            %tmp.10 = const :color;
+            %tmp.11 = getm $.Toybox.Graphics;
+            %tmp.12 = getv %tmp.11 :COLOR_BLUE;
+            %tmp.13 = dup %tmp.8;
+            %tmp.14 = aputv %tmp.13 %tmp.10 %tmp.12;
+            %tmp.16 = const :locX;
+            %tmp.18 = lgetv %rez_cmp_local_var_dc_getWidth.1;
+            %tmp.19 = 0.5;
+            %tmp.20 = mul %tmp.18 %tmp.19;
+            %tmp.21 = dup %tmp.14;
+            %tmp.22 = aputv %tmp.21 %tmp.16 %tmp.20;
+            %tmp.24 = const :locY;
+            %tmp.25 = 40;
+            %tmp.26 = dup %tmp.22;
+            %tmp.27 = aputv %tmp.26 %tmp.24 %tmp.25;
+            %tmp.29 = const :text;
+            %tmp.30 = getm $;
+            %tmp.31 = getv %tmp.30 :Rez;
+            %tmp.32 = getv %tmp.31 :Strings;
+            %tmp.33 = getv %tmp.32 :AppName;
+            %tmp.34 = dup %tmp.27;
+            %tmp.35 = aputv %tmp.34 %tmp.29 %tmp.33;
+            %tmp.37 = const :justification;
+            %tmp.38 = getm $.Toybox.Graphics;
+            %tmp.39 = getv %tmp.38 :TEXT_JUSTIFY_CENTER;
+            %tmp.40 = dup %tmp.35;
+            %tmp.41 = aputv %tmp.40 %tmp.37 %tmp.39;
+            %tmp.43 = const :font;
+            %tmp.44 = getm $.Toybox.Graphics;
+            %tmp.45 = getv %tmp.44 :FONT_MEDIUM;
+            %tmp.46 = dup %tmp.41;
+            %tmp.47 = aputv %tmp.46 %tmp.43 %tmp.45;
+            %tmp.4 = newc %tmp.7 (%tmp.47);
+            lputv %rez_cmp_local_text_1165030703.2 %tmp.4;
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 35 12 ]
+            [ "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_30_74_start" "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_30_74_stop" ]
+            %rez_cmp_local_text_1432345679.3 = local;
+            %tmp.50 = getm $.Toybox.WatchUi;
+            %tmp.51 = getv function ? %tmp.50 :Text;
+            %tmp.52 = newd 6;
+            %tmp.54 = const :color;
+            %tmp.55 = getm $.Toybox.Graphics;
+            %tmp.56 = getv %tmp.55 :COLOR_WHITE;
+            %tmp.57 = dup %tmp.52;
+            %tmp.58 = aputv %tmp.57 %tmp.54 %tmp.56;
+            %tmp.60 = const :locX;
+            %tmp.62 = lgetv %rez_cmp_local_var_dc_getWidth.1;
+            %tmp.63 = 0.5;
+            %tmp.64 = mul %tmp.62 %tmp.63;
+            %tmp.65 = dup %tmp.58;
+            %tmp.66 = aputv %tmp.65 %tmp.60 %tmp.64;
+            %tmp.68 = const :locY;
+            %tmp.69 = lgetv %dc;
+            %tmp.70 = getv function %tmp.69 :getHeight;
+            %tmp.71 = invoke %tmp.69 %tmp.70();
+            %tmp.72 = lgetv %dc;
+            %tmp.73 = getv function %tmp.72 :getFontHeight;
+            %tmp.74 = getm $.Toybox.Graphics;
+            %tmp.75 = getv %tmp.74 :FONT_SMALL;
+            %tmp.76 = invoke %tmp.72 %tmp.73(%tmp.75);
+            %tmp.77 = sub %tmp.71 %tmp.76;
+            %tmp.78 = 0.5;
+            %tmp.79 = mul %tmp.77 %tmp.78;
+            %tmp.80 = dup %tmp.66;
+            %tmp.81 = aputv %tmp.80 %tmp.68 %tmp.79;
+            %tmp.83 = const :text;
+            %tmp.84 = "send!";
+            %tmp.85 = dup %tmp.81;
+            %tmp.86 = aputv %tmp.85 %tmp.83 %tmp.84;
+            %tmp.88 = const :justification;
+            %tmp.89 = getm $.Toybox.Graphics;
+            %tmp.90 = getv %tmp.89 :TEXT_JUSTIFY_CENTER;
+            %tmp.91 = dup %tmp.86;
+            %tmp.92 = aputv %tmp.91 %tmp.88 %tmp.90;
+            %tmp.94 = const :font;
+            %tmp.95 = getm $.Toybox.Graphics;
+            %tmp.96 = getv %tmp.95 :FONT_SMALL;
+            %tmp.97 = dup %tmp.92;
+            %tmp.98 = aputv %tmp.97 %tmp.94 %tmp.96;
+            %tmp.48 = newc %tmp.51 (%tmp.98);
+            lputv %rez_cmp_local_text_1432345679.3 %tmp.48;
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 37 12 ]
+            [ "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_30_74_start" "C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_30_74_stop" ]
+            %rez_cmp_local_bitmap_id_send.4 = local;
+            %tmp.101 = getm $.Toybox.WatchUi;
+            %tmp.102 = getv function ? %tmp.101 :Bitmap;
+            %tmp.103 = newd 4;
+            %tmp.105 = const :identifier;
+            %tmp.106 = "id_send";
+            %tmp.107 = dup %tmp.103;
+            %tmp.108 = aputv %tmp.107 %tmp.105 %tmp.106;
+            %tmp.110 = const :rezId;
+            %tmp.111 = getm $;
+            %tmp.112 = getv %tmp.111 :Rez;
+            %tmp.113 = getv %tmp.112 :Drawables;
+            %tmp.114 = getv %tmp.113 :id_send;
+            %tmp.115 = dup %tmp.108;
+            %tmp.116 = aputv %tmp.115 %tmp.110 %tmp.114;
+            %tmp.118 = const :locX;
+            %tmp.119 = getm $.Toybox.WatchUi;
+            %tmp.120 = getv %tmp.119 :LAYOUT_HALIGN_CENTER;
+            %tmp.121 = dup %tmp.116;
+            %tmp.122 = aputv %tmp.121 %tmp.118 %tmp.120;
+            %tmp.124 = const :locY;
+            %tmp.125 = 190;
+            %tmp.126 = dup %tmp.122;
+            %tmp.127 = aputv %tmp.126 %tmp.124 %tmp.125;
+            %tmp.99 = newc %tmp.102 (%tmp.127);
+            lputv %rez_cmp_local_bitmap_id_send.4 %tmp.99;
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 38 12 ]
+            %tmp.128 = lgetv %rez_cmp_local_bitmap_id_send.4;
+            %tmp.129 = getv function %tmp.128 :setLocation;
+            %tmp.131 = lgetv %rez_cmp_local_var_dc_getWidth.1;
+            %tmp.132 = lgetv %rez_cmp_local_bitmap_id_send.4;
+            %tmp.133 = getv %tmp.132 :width;
+            %tmp.134 = sub %tmp.131 %tmp.133;
+            %tmp.135 = 0.5;
+            %tmp.136 = mul %tmp.134 %tmp.135;
+            %tmp.137 = lgetv %rez_cmp_local_bitmap_id_send.4;
+            %tmp.138 = getv %tmp.137 :locY;
+            invoke %tmp.128 %tmp.129(%tmp.136, %tmp.138);
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 40 12 ]
+            %tmp.139 = newa Array<WatchUi.Drawable> 3;
+            %tmp.141 = lgetv %rez_cmp_local_text_1165030703.2;
+            %tmp.142 = dup %tmp.139;
+            %tmp.143 = aputv %tmp.142 0 %tmp.141;
+            %tmp.145 = lgetv %rez_cmp_local_text_1432345679.3;
+            %tmp.146 = dup %tmp.143;
+            %tmp.147 = aputv %tmp.146 1 %tmp.145;
+            %tmp.149 = lgetv %rez_cmp_local_bitmap_id_send.4;
+            %tmp.150 = dup %tmp.147;
+            %tmp.151 = aputv %tmp.150 2 %tmp.149;
+            ret %tmp.151;
+C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_30_74_stop:
+        }
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 44; ]
+    module Menus {
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 44; ]
+        <init> {
+        }
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 45; ]
+        class MainMenu extends WatchUi.Menu{
+            [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 45; ]
+            <init> {
+            }
+            [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 45; ]
+            static
+            <init> {
+            }
+            [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 46; ]
+            function initialize() as Void {
+C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_46_34_start:
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 47 16 ]
+                %tmp.2 = getv ? :Menu;
+                %tmp.3 = getv function %tmp.2 :initialize;
+                invoke %tmp.2 %tmp.3();
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 48 16 ]
+                %tmp.5 = getv ? :Menu;
+                %tmp.6 = getv function %tmp.5 :setTitle;
+                %tmp.7 = getm $.Toybox.WatchUi;
+                %tmp.8 = getv function %tmp.7 :loadResource;
+                %tmp.9 = getm $;
+                %tmp.10 = getv %tmp.9 :Rez;
+                %tmp.11 = getv %tmp.10 :Strings;
+                %tmp.12 = getv %tmp.11 :MainMenuTitle;
+                %tmp.13 = invoke %tmp.7 %tmp.8(%tmp.12);
+                %tmp.14 = as %tmp.13 String;
+                invoke %tmp.5 %tmp.6(%tmp.14);
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 49 16 ]
+                %tmp.15 = self;
+                %tmp.16 = getv function %tmp.15 :addItem;
+                %tmp.17 = getm $.Toybox.WatchUi;
+                %tmp.18 = getv function %tmp.17 :loadResource;
+                %tmp.19 = getm $;
+                %tmp.20 = getv %tmp.19 :Rez;
+                %tmp.21 = getv %tmp.20 :Strings;
+                %tmp.22 = getv %tmp.21 :MenuLabel1;
+                %tmp.23 = invoke %tmp.17 %tmp.18(%tmp.22);
+                %tmp.24 = as %tmp.23 String;
+                %tmp.26 = const :Item1;
+                invoke %tmp.15 %tmp.16(%tmp.24, %tmp.26);
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 50 16 ]
+                %tmp.27 = self;
+                %tmp.28 = getv function %tmp.27 :addItem;
+                %tmp.29 = getm $.Toybox.WatchUi;
+                %tmp.30 = getv function %tmp.29 :loadResource;
+                %tmp.31 = getm $;
+                %tmp.32 = getv %tmp.31 :Rez;
+                %tmp.33 = getv %tmp.32 :Strings;
+                %tmp.34 = getv %tmp.33 :MenuLabel2;
+                %tmp.35 = invoke %tmp.29 %tmp.30(%tmp.34);
+                %tmp.36 = as %tmp.35 String;
+                %tmp.38 = const :Item2;
+                invoke %tmp.27 %tmp.28(%tmp.36, %tmp.38);
+[ "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen" 51 16 ]
+                %tmp.39 = self;
+                %tmp.40 = getv function %tmp.39 :addItem;
+                %tmp.41 = getm $.Toybox.WatchUi;
+                %tmp.42 = getv function %tmp.41 :loadResource;
+                %tmp.43 = getm $;
+                %tmp.44 = getv %tmp.43 :Rez;
+                %tmp.45 = getv %tmp.44 :Strings;
+                %tmp.46 = getv %tmp.45 :MenuLabel3;
+                %tmp.47 = invoke %tmp.41 %tmp.42(%tmp.46);
+                %tmp.48 = as %tmp.47 String;
+                %tmp.50 = const :Item3;
+                invoke %tmp.39 %tmp.40(%tmp.48, %tmp.50);
+C_Users_Tom_eclipse_workspace_App_bin_gen_no_device_source_Rez_mcgen_46_34_stop:
+            }
+        }
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 56; ]
+    module Strings {
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 56; ]
+        <init> {
+        }
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 57; @position = 27; initialized = true; ]
+        var webhookUrl3 as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 58; @position = 27; initialized = true; ]
+        var webhookUrl2 as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 59; @position = 27; initialized = true; ]
+        var avatarUrl as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 60; @position = 27; initialized = true; ]
+        var webhookUrl1 as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 61; @position = 27; initialized = true; ]
+        var MainMenuTitle as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 62; @position = 27; initialized = true; ]
+        var HomeTitle as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 63; @position = 27; initialized = true; ]
+        var label as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 64; @position = 27; initialized = true; ]
+        var label1 as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 65; @position = 27; initialized = true; ]
+        var webhookUrl as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 66; @position = 27; initialized = true; ]
+        var content as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 67; @position = 27; initialized = true; ]
+        var label2 as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 68; @position = 27; initialized = true; ]
+        var AppName as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 69; @position = 27; initialized = true; ]
+        var label3 as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 70; @position = 27; initialized = true; ]
+        var MenuLabel3 as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 71; @position = 27; initialized = true; ]
+        var Prompt as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 72; @position = 27; initialized = true; ]
+        var MenuLabel1 as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 73; @position = 27; initialized = true; ]
+        var MenuLabel2 as Symbol;
+        [ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 74; @position = 27; initialized = true; ]
+        var username as Symbol;
+    }
+}
+[ @file = "C:\Users\Tom\eclipse-workspace\App\bin\gen\no-device\source\Rez.mcgen"; @line = 1; ]
+<init> {
+}

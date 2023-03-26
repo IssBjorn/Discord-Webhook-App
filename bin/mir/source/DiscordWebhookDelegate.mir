@@ -1,0 +1,149 @@
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 1; ]
+using Toybox.Communications;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 2; ]
+using Toybox.Application;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 3; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 4; ]
+using Toybox;
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 6; ]
+class DiscordWebhookDelegate extends WatchUi.BehaviorDelegate{
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 6; ]
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 6; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 7; @position = 15; ]
+    public
+    var active = true;
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 9; ]
+    function initialize() as Void {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_9_26_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc" 10 8 ]
+        %tmp.2 = getv ? :BehaviorDelegate;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_9_26_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 13; ]
+    function onTap(event) {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_13_25_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc" 14 5 ]
+        %tmp.1 = self;
+        %tmp.2 = getv function %tmp.1 :sendRequest;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        ret %tmp.3;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_13_25_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 18; ]
+    function onKey(event) {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_18_25_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc" 19 8 ]
+        %tmp.1 = self;
+        %tmp.2 = getv function %tmp.1 :sendRequest;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        ret %tmp.3;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_18_25_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 22; ]
+    function sendRequest() {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_22_23_start:
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_23_5_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc" 24 9 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_23_5_start" "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_23_5_stop" ]
+        %url.1 = local;
+        %tmp.1 = getm $.Toybox.Application;
+        %tmp.2 = getv %tmp.1 :Properties;
+        %tmp.3 = getv function %tmp.2 :getValue;
+        %tmp.4 = "webhookUrl";
+        %tmp.5 = invoke %tmp.2 %tmp.3(%tmp.4);
+        lputv %url.1 %tmp.5;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc" 26 9 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_23_5_start" "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_23_5_stop" ]
+        %params.2 = local;
+        %tmp.6 = newd 5;
+        %tmp.7 = "username";
+        %tmp.8 = getm $.Toybox.Application;
+        %tmp.9 = getv %tmp.8 :Properties;
+        %tmp.10 = getv function %tmp.9 :getValue;
+        %tmp.11 = "username";
+        %tmp.12 = invoke %tmp.9 %tmp.10(%tmp.11);
+        %tmp.13 = dup %tmp.6;
+        %tmp.14 = aputv %tmp.13 %tmp.7 %tmp.12;
+        %tmp.15 = "avatar_url";
+        %tmp.16 = getm $.Toybox.Application;
+        %tmp.17 = getv %tmp.16 :Properties;
+        %tmp.18 = getv function %tmp.17 :getValue;
+        %tmp.19 = "avatarUrl";
+        %tmp.20 = invoke %tmp.17 %tmp.18(%tmp.19);
+        %tmp.21 = dup %tmp.14;
+        %tmp.22 = aputv %tmp.21 %tmp.15 %tmp.20;
+        %tmp.23 = "content";
+        %tmp.24 = getm $.Toybox.Application;
+        %tmp.25 = getv %tmp.24 :Properties;
+        %tmp.26 = getv function %tmp.25 :getValue;
+        %tmp.27 = "content";
+        %tmp.28 = invoke %tmp.25 %tmp.26(%tmp.27);
+        %tmp.29 = dup %tmp.22;
+        %tmp.30 = aputv %tmp.29 %tmp.23 %tmp.28;
+        %tmp.31 = "embeds";
+        %tmp.32 = newa 0;
+        %tmp.33 = dup %tmp.30;
+        %tmp.34 = aputv %tmp.33 %tmp.31 %tmp.32;
+        %tmp.35 = "components";
+        %tmp.36 = newa 0;
+        %tmp.37 = dup %tmp.34;
+        %tmp.38 = aputv %tmp.37 %tmp.35 %tmp.36;
+        lputv %params.2 %tmp.38;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc" 34 9 ]
+        [ "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_23_5_start" "C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_23_5_stop" ]
+        %options.3 = local;
+        %tmp.39 = newd 3;
+        %tmp.41 = const :method;
+        %tmp.42 = getm $.Toybox.Communications;
+        %tmp.43 = getv %tmp.42 :HTTP_REQUEST_METHOD_POST;
+        %tmp.44 = dup %tmp.39;
+        %tmp.45 = aputv %tmp.44 %tmp.41 %tmp.43;
+        %tmp.47 = const :headers;
+        %tmp.48 = newd 1;
+        %tmp.49 = "Content-Type";
+        %tmp.50 = getm $.Toybox.Communications;
+        %tmp.51 = getv %tmp.50 :REQUEST_CONTENT_TYPE_JSON;
+        %tmp.52 = dup %tmp.48;
+        %tmp.53 = aputv %tmp.52 %tmp.49 %tmp.51;
+        %tmp.54 = dup %tmp.45;
+        %tmp.55 = aputv %tmp.54 %tmp.47 %tmp.53;
+        %tmp.57 = const :responseType;
+        %tmp.58 = getm $.Toybox.Communications;
+        %tmp.59 = getv %tmp.58 :HTTP_RESPONSE_CONTENT_TYPE_JSON;
+        %tmp.60 = dup %tmp.55;
+        %tmp.61 = aputv %tmp.60 %tmp.57 %tmp.59;
+        lputv %options.3 %tmp.61;
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc" 40 9 ]
+        %tmp.62 = getm $.Toybox.Communications;
+        %tmp.63 = getv function %tmp.62 :makeWebRequest;
+        %tmp.65 = lgetv %url.1;
+        %tmp.67 = lgetv %params.2;
+        %tmp.69 = lgetv %options.3;
+        %tmp.70 = self;
+        %tmp.71 = getv function %tmp.70 :method;
+        %tmp.73 = const :onResponse;
+        %tmp.74 = invoke %tmp.70 %tmp.71(%tmp.73);
+        invoke %tmp.62 %tmp.63(%tmp.65, %tmp.67, %tmp.69, %tmp.74);
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_23_5_stop:
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_22_23_stop:
+    }
+    [ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 46; ]
+    function onResponse(status, data) {
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_46_34_start:
+[ "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc" 47 5 ]
+        %tmp.1 = true;
+        ret %tmp.1;
+C_Users_Tom_eclipse_workspace_App_source_DiscordWebhookDelegate_mc_46_34_stop:
+    }
+}
+[ @file = "C:\Users\Tom\eclipse-workspace\App\source\DiscordWebhookDelegate.mc"; @line = 1; ]
+<init> {
+}
